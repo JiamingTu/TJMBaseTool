@@ -1,0 +1,6 @@
+framework module Pods_TJMBaseTool_Tests {
+  umbrella header "Pods-TJMBaseTool_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

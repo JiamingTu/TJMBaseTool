@@ -1,0 +1,6 @@
+framework module TJMBaseTool {
+  umbrella header "TJMBaseTool-umbrella.h"
+
+  export *
+  module * { export * }
+}
