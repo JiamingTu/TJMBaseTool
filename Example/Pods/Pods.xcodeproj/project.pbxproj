@@ -13,10 +13,13 @@
 		4246B383390D266ADDDD43C183ECFB3C /* TJMBaseTool-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C1B41125AEEA7B468BBE7DE3664663C /* TJMBaseTool-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		605F3EA6099FEE17DC0CD8D863054744 /* Pods-TJMBaseTool_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D3973AC8035ACA6659D04D68A152DE /* Pods-TJMBaseTool_Example-dummy.m */; };
 		70BF370FFAAAD0DF2AA458D40A859DC4 /* Pods-TJMBaseTool_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E6CE54745B8482ABBA605C0892D95144 /* Pods-TJMBaseTool_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		99C0C13620DA272000A8BE94 /* TJMNetworkingManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 99C0C13120DA272000A8BE94 /* TJMNetworkingManager.h */; };
+		99C0C13720DA272000A8BE94 /* TJMNetworkingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C0C13220DA272000A8BE94 /* TJMNetworkingManager.m */; };
+		99C0C13820DA272000A8BE94 /* TJMHUDHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C0C13420DA272000A8BE94 /* TJMHUDHandle.m */; };
+		99C0C13920DA272000A8BE94 /* TJMHUDHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = 99C0C13520DA272000A8BE94 /* TJMHUDHandle.h */; };
 		B0573122182B5890A6256D9C50573A3C /* Pods-TJMBaseTool_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E84721FDB653AF70B2CFCDCA558A372 /* Pods-TJMBaseTool_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C790D2BAB0F7C2C00106E9EE82D8554B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		E80ADBDCEBB4CB5C2B2D315B454C47ED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		F247C1E780D662DB0BBE894694D48AC8 /* ReplaceMe.m in Sources */ = {isa = PBXBuildFile; fileRef = 03218EB8B758D81D802A62284C869601 /* ReplaceMe.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,12 +33,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		03218EB8B758D81D802A62284C869601 /* ReplaceMe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ReplaceMe.m; path = TJMBaseTool/Classes/ReplaceMe.m; sourceTree = "<group>"; };
 		06CD1E7DE2B01E8BDC438EDC96DCD948 /* Pods-TJMBaseTool_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TJMBaseTool_Tests-resources.sh"; sourceTree = "<group>"; };
 		17CE6FA0892B8A63964A1F7B61DA3644 /* Pods-TJMBaseTool_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TJMBaseTool_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		1CCD3A356A70235D92F0DF6CEA3B9715 /* TJMBaseTool-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TJMBaseTool-dummy.m"; sourceTree = "<group>"; };
 		36061F38E379FB752449767F8363CE29 /* Pods-TJMBaseTool_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TJMBaseTool_Example-resources.sh"; sourceTree = "<group>"; };
-		37A2A760BD2D92B309A67AC533CF65C5 /* Pods_TJMBaseTool_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_TJMBaseTool_Tests.framework; path = "Pods-TJMBaseTool_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		37A2A760BD2D92B309A67AC533CF65C5 /* Pods_TJMBaseTool_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TJMBaseTool_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A6DF5E58051564906545FA0557EFFC5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F0399CDA65C79E4CC8445AAFAB5579F /* Pods-TJMBaseTool_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TJMBaseTool_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		3F57FF8B86E33DEEBD3E84BB16A3564B /* Pods-TJMBaseTool_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TJMBaseTool_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
@@ -44,19 +46,23 @@
 		60508F4861EFD0BB892058849B776F78 /* Pods-TJMBaseTool_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TJMBaseTool_Example-frameworks.sh"; sourceTree = "<group>"; };
 		61D3973AC8035ACA6659D04D68A152DE /* Pods-TJMBaseTool_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TJMBaseTool_Example-dummy.m"; sourceTree = "<group>"; };
 		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		66D5D1293F324265BAFB7B015F8052A2 /* TJMBaseTool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TJMBaseTool.framework; path = TJMBaseTool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		68E4129EBC1E5A51559CDDDDD99D13A8 /* Pods-TJMBaseTool_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-TJMBaseTool_Example.modulemap"; sourceTree = "<group>"; };
+		66D5D1293F324265BAFB7B015F8052A2 /* TJMBaseTool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TJMBaseTool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		68E4129EBC1E5A51559CDDDDD99D13A8 /* Pods-TJMBaseTool_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-TJMBaseTool_Example.modulemap"; sourceTree = "<group>"; };
 		6C0153DE777C4C8D77B335C3F9C3B971 /* TJMBaseTool.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TJMBaseTool.xcconfig; sourceTree = "<group>"; };
 		914C975FED790DF3F98839A31B6131AA /* Pods-TJMBaseTool_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TJMBaseTool_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		97C9C3A840A07CC4C9F033BBB134EBD0 /* Pods_TJMBaseTool_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_TJMBaseTool_Example.framework; path = "Pods-TJMBaseTool_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		97C9C3A840A07CC4C9F033BBB134EBD0 /* Pods_TJMBaseTool_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TJMBaseTool_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99AF41E78740EA90469B947F47F6927D /* Pods-TJMBaseTool_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TJMBaseTool_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		99C0C13120DA272000A8BE94 /* TJMNetworkingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMNetworkingManager.h; sourceTree = "<group>"; };
+		99C0C13220DA272000A8BE94 /* TJMNetworkingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMNetworkingManager.m; sourceTree = "<group>"; };
+		99C0C13420DA272000A8BE94 /* TJMHUDHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMHUDHandle.m; sourceTree = "<group>"; };
+		99C0C13520DA272000A8BE94 /* TJMHUDHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMHUDHandle.h; sourceTree = "<group>"; };
 		9C1B41125AEEA7B468BBE7DE3664663C /* TJMBaseTool-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TJMBaseTool-umbrella.h"; sourceTree = "<group>"; };
 		9E84721FDB653AF70B2CFCDCA558A372 /* Pods-TJMBaseTool_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TJMBaseTool_Example-umbrella.h"; sourceTree = "<group>"; };
 		A80F802476DF135E1EEB760FA2BA516C /* TJMBaseTool-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TJMBaseTool-prefix.pch"; sourceTree = "<group>"; };
-		B676664D354458B6B0694488D78F8B94 /* TJMBaseTool.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = TJMBaseTool.modulemap; sourceTree = "<group>"; };
+		B676664D354458B6B0694488D78F8B94 /* TJMBaseTool.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = TJMBaseTool.modulemap; sourceTree = "<group>"; };
 		BF67BD02C23451059CCF19B986A42400 /* Pods-TJMBaseTool_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TJMBaseTool_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		C654D175EFD22B8A0238BC5B30E2EE4B /* Pods-TJMBaseTool_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-TJMBaseTool_Tests.modulemap"; sourceTree = "<group>"; };
+		C654D175EFD22B8A0238BC5B30E2EE4B /* Pods-TJMBaseTool_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-TJMBaseTool_Tests.modulemap"; sourceTree = "<group>"; };
 		D85967A7CB80AA0DB5BB4A2FDEF29137 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E695F9A84C59207CDDA052A19DA9C7EE /* Pods-TJMBaseTool_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TJMBaseTool_Example.release.xcconfig"; sourceTree = "<group>"; };
 		E6CE54745B8482ABBA605C0892D95144 /* Pods-TJMBaseTool_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TJMBaseTool_Tests-umbrella.h"; sourceTree = "<group>"; };
@@ -103,6 +109,34 @@
 			);
 			sourceTree = "<group>";
 		};
+		99C0C12F20DA272000A8BE94 /* ThirdPartyPackaging */ = {
+			isa = PBXGroup;
+			children = (
+				99C0C13020DA272000A8BE94 /* NetworkManager */,
+				99C0C13320DA272000A8BE94 /* HUDManager */,
+			);
+			name = ThirdPartyPackaging;
+			path = TJMBaseTool/Classes/ThirdPartyPackaging;
+			sourceTree = "<group>";
+		};
+		99C0C13020DA272000A8BE94 /* NetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+				99C0C13120DA272000A8BE94 /* TJMNetworkingManager.h */,
+				99C0C13220DA272000A8BE94 /* TJMNetworkingManager.m */,
+			);
+			path = NetworkManager;
+			sourceTree = "<group>";
+		};
+		99C0C13320DA272000A8BE94 /* HUDManager */ = {
+			isa = PBXGroup;
+			children = (
+				99C0C13420DA272000A8BE94 /* TJMHUDHandle.m */,
+				99C0C13520DA272000A8BE94 /* TJMHUDHandle.h */,
+			);
+			path = HUDManager;
+			sourceTree = "<group>";
+		};
 		9B3C9B813821FA72DFF01446174FD786 /* Pods-TJMBaseTool_Example */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,7 +175,7 @@
 		C0E1C25D2F044EA15A531016C7EBBACB /* TJMBaseTool */ = {
 			isa = PBXGroup;
 			children = (
-				03218EB8B758D81D802A62284C869601 /* ReplaceMe.m */,
+				99C0C12F20DA272000A8BE94 /* ThirdPartyPackaging */,
 				D70345F2910EB2BFF2D2AA5DDDCEAE59 /* Support Files */,
 			);
 			name = TJMBaseTool;
@@ -221,7 +255,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99C0C13620DA272000A8BE94 /* TJMNetworkingManager.h in Headers */,
 				4246B383390D266ADDDD43C183ECFB3C /* TJMBaseTool-umbrella.h in Headers */,
+				99C0C13920DA272000A8BE94 /* TJMHUDHandle.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,7 +365,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F247C1E780D662DB0BBE894694D48AC8 /* ReplaceMe.m in Sources */,
+				99C0C13720DA272000A8BE94 /* TJMNetworkingManager.m in Sources */,
+				99C0C13820DA272000A8BE94 /* TJMHUDHandle.m in Sources */,
 				167873F9DE9EE0208838C2F411075575 /* TJMBaseTool-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
