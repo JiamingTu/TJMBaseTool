@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-    自己用的基础模块
+    自己用的基础模块，包括AFN封装，等
                        DESC
 
   s.homepage         = 'https://github.com/JiamingTu/TJMBaseTool'
