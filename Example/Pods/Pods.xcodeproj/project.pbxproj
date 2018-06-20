@@ -8,17 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		04A4FF478B929FE80A6191E992AD1DAC /* Pods-TJMBaseTool_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 47CB75C4399EE82E55D397F019888F39 /* Pods-TJMBaseTool_Tests-dummy.m */; };
-		167873F9DE9EE0208838C2F411075575 /* TJMBaseTool-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CCD3A356A70235D92F0DF6CEA3B9715 /* TJMBaseTool-dummy.m */; };
+		1E89828E154CAF13B8E89DEBA7A60DCB /* TJMBaseTool-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A589BE39853BF175603528521EA4CBEA /* TJMBaseTool-dummy.m */; };
 		3E7801F46A8A44FA2DC96A4EB5F0C2F5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		4246B383390D266ADDDD43C183ECFB3C /* TJMBaseTool-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C1B41125AEEA7B468BBE7DE3664663C /* TJMBaseTool-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4CF22DE90AF2A303B18B5F1924A69A41 /* TJMHUDHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3DD0C34F4EA563F0F51BA118C177DE /* TJMHUDHandle.m */; };
 		605F3EA6099FEE17DC0CD8D863054744 /* Pods-TJMBaseTool_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D3973AC8035ACA6659D04D68A152DE /* Pods-TJMBaseTool_Example-dummy.m */; };
+		6CF7E2DC06110CE85834482552919032 /* TJMHUDHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = E98FB10C9E0676836D61FDF6A87F1FFC /* TJMHUDHandle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70BF370FFAAAD0DF2AA458D40A859DC4 /* Pods-TJMBaseTool_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E6CE54745B8482ABBA605C0892D95144 /* Pods-TJMBaseTool_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		99C0C13620DA272000A8BE94 /* TJMNetworkingManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 99C0C13120DA272000A8BE94 /* TJMNetworkingManager.h */; };
-		99C0C13720DA272000A8BE94 /* TJMNetworkingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C0C13220DA272000A8BE94 /* TJMNetworkingManager.m */; };
-		99C0C13820DA272000A8BE94 /* TJMHUDHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C0C13420DA272000A8BE94 /* TJMHUDHandle.m */; };
-		99C0C13920DA272000A8BE94 /* TJMHUDHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = 99C0C13520DA272000A8BE94 /* TJMHUDHandle.h */; };
+		A8119E0631A9CA8C0D9AC2FD0D9687BC /* TJMNetworkingManager.h in Headers */ = {isa = PBXBuildFile; fileRef = C3D6B549795A8E13B3FAB2782B1E9944 /* TJMNetworkingManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B0573122182B5890A6256D9C50573A3C /* Pods-TJMBaseTool_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E84721FDB653AF70B2CFCDCA558A372 /* Pods-TJMBaseTool_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C00B02C6CC0C3EA40E828750AA4BD0C1 /* TJMNetworkingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1D53108C1CCC7702E5121ABCD9A43B /* TJMNetworkingManager.m */; };
 		C790D2BAB0F7C2C00106E9EE82D8554B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		E1EA3B3BFCB916123CBAE65FAB223C5F /* TJMBaseTool-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A80EA083CF7C159B8778CDBFB6861772 /* TJMBaseTool-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E80ADBDCEBB4CB5C2B2D315B454C47ED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,37 +35,37 @@
 /* Begin PBXFileReference section */
 		06CD1E7DE2B01E8BDC438EDC96DCD948 /* Pods-TJMBaseTool_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TJMBaseTool_Tests-resources.sh"; sourceTree = "<group>"; };
 		17CE6FA0892B8A63964A1F7B61DA3644 /* Pods-TJMBaseTool_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TJMBaseTool_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		1CCD3A356A70235D92F0DF6CEA3B9715 /* TJMBaseTool-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TJMBaseTool-dummy.m"; sourceTree = "<group>"; };
+		2C89B7EFEC57D2FE6660CB8D0DD898CA /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		31D2AB28514B046F7CB848849E49E633 /* TJMBaseTool.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = TJMBaseTool.modulemap; sourceTree = "<group>"; };
 		36061F38E379FB752449767F8363CE29 /* Pods-TJMBaseTool_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TJMBaseTool_Example-resources.sh"; sourceTree = "<group>"; };
-		37A2A760BD2D92B309A67AC533CF65C5 /* Pods_TJMBaseTool_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TJMBaseTool_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		37A2A760BD2D92B309A67AC533CF65C5 /* Pods_TJMBaseTool_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_TJMBaseTool_Tests.framework; path = "Pods-TJMBaseTool_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A6DF5E58051564906545FA0557EFFC5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F0399CDA65C79E4CC8445AAFAB5579F /* Pods-TJMBaseTool_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TJMBaseTool_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		3F57FF8B86E33DEEBD3E84BB16A3564B /* Pods-TJMBaseTool_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TJMBaseTool_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		47CB75C4399EE82E55D397F019888F39 /* Pods-TJMBaseTool_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TJMBaseTool_Tests-dummy.m"; sourceTree = "<group>"; };
-		54201CB91F42716CACBE656CE7FC7518 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		60508F4861EFD0BB892058849B776F78 /* Pods-TJMBaseTool_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TJMBaseTool_Example-frameworks.sh"; sourceTree = "<group>"; };
 		61D3973AC8035ACA6659D04D68A152DE /* Pods-TJMBaseTool_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TJMBaseTool_Example-dummy.m"; sourceTree = "<group>"; };
 		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		66D5D1293F324265BAFB7B015F8052A2 /* TJMBaseTool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TJMBaseTool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		68E4129EBC1E5A51559CDDDDD99D13A8 /* Pods-TJMBaseTool_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-TJMBaseTool_Example.modulemap"; sourceTree = "<group>"; };
-		6C0153DE777C4C8D77B335C3F9C3B971 /* TJMBaseTool.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TJMBaseTool.xcconfig; sourceTree = "<group>"; };
+		66D5D1293F324265BAFB7B015F8052A2 /* TJMBaseTool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TJMBaseTool.framework; path = TJMBaseTool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		68E4129EBC1E5A51559CDDDDD99D13A8 /* Pods-TJMBaseTool_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-TJMBaseTool_Example.modulemap"; sourceTree = "<group>"; };
+		8C6A78105A2A0C4635AE90DCB48DAB46 /* TJMBaseTool-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TJMBaseTool-prefix.pch"; sourceTree = "<group>"; };
+		8D3DD0C34F4EA563F0F51BA118C177DE /* TJMHUDHandle.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TJMHUDHandle.m; sourceTree = "<group>"; };
 		914C975FED790DF3F98839A31B6131AA /* Pods-TJMBaseTool_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TJMBaseTool_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		97C9C3A840A07CC4C9F033BBB134EBD0 /* Pods_TJMBaseTool_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TJMBaseTool_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		97C9C3A840A07CC4C9F033BBB134EBD0 /* Pods_TJMBaseTool_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_TJMBaseTool_Example.framework; path = "Pods-TJMBaseTool_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		99AF41E78740EA90469B947F47F6927D /* Pods-TJMBaseTool_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TJMBaseTool_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		99C0C13120DA272000A8BE94 /* TJMNetworkingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMNetworkingManager.h; sourceTree = "<group>"; };
-		99C0C13220DA272000A8BE94 /* TJMNetworkingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMNetworkingManager.m; sourceTree = "<group>"; };
-		99C0C13420DA272000A8BE94 /* TJMHUDHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJMHUDHandle.m; sourceTree = "<group>"; };
-		99C0C13520DA272000A8BE94 /* TJMHUDHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJMHUDHandle.h; sourceTree = "<group>"; };
-		9C1B41125AEEA7B468BBE7DE3664663C /* TJMBaseTool-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TJMBaseTool-umbrella.h"; sourceTree = "<group>"; };
 		9E84721FDB653AF70B2CFCDCA558A372 /* Pods-TJMBaseTool_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TJMBaseTool_Example-umbrella.h"; sourceTree = "<group>"; };
-		A80F802476DF135E1EEB760FA2BA516C /* TJMBaseTool-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TJMBaseTool-prefix.pch"; sourceTree = "<group>"; };
-		B676664D354458B6B0694488D78F8B94 /* TJMBaseTool.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = TJMBaseTool.modulemap; sourceTree = "<group>"; };
+		A589BE39853BF175603528521EA4CBEA /* TJMBaseTool-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TJMBaseTool-dummy.m"; sourceTree = "<group>"; };
+		A80EA083CF7C159B8778CDBFB6861772 /* TJMBaseTool-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TJMBaseTool-umbrella.h"; sourceTree = "<group>"; };
 		BF67BD02C23451059CCF19B986A42400 /* Pods-TJMBaseTool_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TJMBaseTool_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		C654D175EFD22B8A0238BC5B30E2EE4B /* Pods-TJMBaseTool_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-TJMBaseTool_Tests.modulemap"; sourceTree = "<group>"; };
+		C3D6B549795A8E13B3FAB2782B1E9944 /* TJMNetworkingManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TJMNetworkingManager.h; sourceTree = "<group>"; };
+		C654D175EFD22B8A0238BC5B30E2EE4B /* Pods-TJMBaseTool_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-TJMBaseTool_Tests.modulemap"; sourceTree = "<group>"; };
 		D85967A7CB80AA0DB5BB4A2FDEF29137 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E4907D860AB0902BCE2F9114EFA47036 /* TJMBaseTool.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TJMBaseTool.xcconfig; sourceTree = "<group>"; };
 		E695F9A84C59207CDDA052A19DA9C7EE /* Pods-TJMBaseTool_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TJMBaseTool_Example.release.xcconfig"; sourceTree = "<group>"; };
 		E6CE54745B8482ABBA605C0892D95144 /* Pods-TJMBaseTool_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TJMBaseTool_Tests-umbrella.h"; sourceTree = "<group>"; };
+		E98FB10C9E0676836D61FDF6A87F1FFC /* TJMHUDHandle.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TJMHUDHandle.h; sourceTree = "<group>"; };
+		EC1D53108C1CCC7702E5121ABCD9A43B /* TJMNetworkingManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TJMNetworkingManager.m; sourceTree = "<group>"; };
 		F858CB2A73D7AD3D91F9DECB0A42B2F9 /* Pods-TJMBaseTool_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TJMBaseTool_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		FA95F7BF39CD3567A36B54250F28B8B9 /* Pods-TJMBaseTool_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TJMBaseTool_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -98,43 +98,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1FC4C7D6316C6536ED5E012C562EFCF1 /* TJMBaseTool */ = {
+			isa = PBXGroup;
+			children = (
+				F6961A48234209A7DD8F2AC8CBB894DD /* HUDManager */,
+				4A05B71DC58190529BAF750FA439765B /* NetworkManager */,
+				AF4B17DA85911329553BA840BC9257E5 /* Support Files */,
+			);
+			name = TJMBaseTool;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		4A05B71DC58190529BAF750FA439765B /* NetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+				C3D6B549795A8E13B3FAB2782B1E9944 /* TJMNetworkingManager.h */,
+				EC1D53108C1CCC7702E5121ABCD9A43B /* TJMNetworkingManager.m */,
+			);
+			name = NetworkManager;
+			path = TJMBaseTool/Classes/ThirdPartyPackaging/NetworkManager;
+			sourceTree = "<group>";
+		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				ED729317F849F899E0A4DB766555CD9D /* Development Pods */,
+				FF3E7A456161A806E4168AE6DCC55848 /* Development Pods */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
 				DDCAB9C2B09A4F65332388BD1123358B /* Products */,
 				A3842E43ECA954F851F1F42422F4FAFE /* Targets Support Files */,
 			);
-			sourceTree = "<group>";
-		};
-		99C0C12F20DA272000A8BE94 /* ThirdPartyPackaging */ = {
-			isa = PBXGroup;
-			children = (
-				99C0C13020DA272000A8BE94 /* NetworkManager */,
-				99C0C13320DA272000A8BE94 /* HUDManager */,
-			);
-			name = ThirdPartyPackaging;
-			path = TJMBaseTool/Classes/ThirdPartyPackaging;
-			sourceTree = "<group>";
-		};
-		99C0C13020DA272000A8BE94 /* NetworkManager */ = {
-			isa = PBXGroup;
-			children = (
-				99C0C13120DA272000A8BE94 /* TJMNetworkingManager.h */,
-				99C0C13220DA272000A8BE94 /* TJMNetworkingManager.m */,
-			);
-			path = NetworkManager;
-			sourceTree = "<group>";
-		};
-		99C0C13320DA272000A8BE94 /* HUDManager */ = {
-			isa = PBXGroup;
-			children = (
-				99C0C13420DA272000A8BE94 /* TJMHUDHandle.m */,
-				99C0C13520DA272000A8BE94 /* TJMHUDHandle.h */,
-			);
-			path = HUDManager;
 			sourceTree = "<group>";
 		};
 		9B3C9B813821FA72DFF01446174FD786 /* Pods-TJMBaseTool_Example */ = {
@@ -164,6 +157,20 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
+		AF4B17DA85911329553BA840BC9257E5 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				2C89B7EFEC57D2FE6660CB8D0DD898CA /* Info.plist */,
+				31D2AB28514B046F7CB848849E49E633 /* TJMBaseTool.modulemap */,
+				E4907D860AB0902BCE2F9114EFA47036 /* TJMBaseTool.xcconfig */,
+				A589BE39853BF175603528521EA4CBEA /* TJMBaseTool-dummy.m */,
+				8C6A78105A2A0C4635AE90DCB48DAB46 /* TJMBaseTool-prefix.pch */,
+				A80EA083CF7C159B8778CDBFB6861772 /* TJMBaseTool-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/TJMBaseTool";
+			sourceTree = "<group>";
+		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,36 +179,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C0E1C25D2F044EA15A531016C7EBBACB /* TJMBaseTool */ = {
-			isa = PBXGroup;
-			children = (
-				99C0C12F20DA272000A8BE94 /* ThirdPartyPackaging */,
-				D70345F2910EB2BFF2D2AA5DDDCEAE59 /* Support Files */,
-			);
-			name = TJMBaseTool;
-			path = ../..;
-			sourceTree = "<group>";
-		};
 		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
 			isa = PBXGroup;
 			children = (
 				6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */,
 			);
 			name = iOS;
-			sourceTree = "<group>";
-		};
-		D70345F2910EB2BFF2D2AA5DDDCEAE59 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				54201CB91F42716CACBE656CE7FC7518 /* Info.plist */,
-				B676664D354458B6B0694488D78F8B94 /* TJMBaseTool.modulemap */,
-				6C0153DE777C4C8D77B335C3F9C3B971 /* TJMBaseTool.xcconfig */,
-				1CCD3A356A70235D92F0DF6CEA3B9715 /* TJMBaseTool-dummy.m */,
-				A80F802476DF135E1EEB760FA2BA516C /* TJMBaseTool-prefix.pch */,
-				9C1B41125AEEA7B468BBE7DE3664663C /* TJMBaseTool-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/TJMBaseTool";
 			sourceTree = "<group>";
 		};
 		DB02084F5CDF68038ECFC688F53148A2 /* Pods-TJMBaseTool_Tests */ = {
@@ -232,10 +215,20 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		ED729317F849F899E0A4DB766555CD9D /* Development Pods */ = {
+		F6961A48234209A7DD8F2AC8CBB894DD /* HUDManager */ = {
 			isa = PBXGroup;
 			children = (
-				C0E1C25D2F044EA15A531016C7EBBACB /* TJMBaseTool */,
+				E98FB10C9E0676836D61FDF6A87F1FFC /* TJMHUDHandle.h */,
+				8D3DD0C34F4EA563F0F51BA118C177DE /* TJMHUDHandle.m */,
+			);
+			name = HUDManager;
+			path = TJMBaseTool/Classes/ThirdPartyPackaging/HUDManager;
+			sourceTree = "<group>";
+		};
+		FF3E7A456161A806E4168AE6DCC55848 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1FC4C7D6316C6536ED5E012C562EFCF1 /* TJMBaseTool */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
@@ -251,13 +244,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4307A5BF369EF16E54B6B3E443B3D19C /* Headers */ = {
+		72CC8842B56A87E1F137B7B4355DD789 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				99C0C13620DA272000A8BE94 /* TJMNetworkingManager.h in Headers */,
-				4246B383390D266ADDDD43C183ECFB3C /* TJMBaseTool-umbrella.h in Headers */,
-				99C0C13920DA272000A8BE94 /* TJMHUDHandle.h in Headers */,
+				E1EA3B3BFCB916123CBAE65FAB223C5F /* TJMBaseTool-umbrella.h in Headers */,
+				6CF7E2DC06110CE85834482552919032 /* TJMHUDHandle.h in Headers */,
+				A8119E0631A9CA8C0D9AC2FD0D9687BC /* TJMNetworkingManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,9 +269,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 61959D2DAF9CBC19DCD4FE35DA5C5205 /* Build configuration list for PBXNativeTarget "TJMBaseTool" */;
 			buildPhases = (
-				81403A9259CC0E00128917DCF85976FA /* Sources */,
+				74E68E1E8A75BAB3B6D354299BB09D34 /* Sources */,
 				1053728EF62A1434194B7E7F46C9FA30 /* Frameworks */,
-				4307A5BF369EF16E54B6B3E443B3D19C /* Headers */,
+				72CC8842B56A87E1F137B7B4355DD789 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -361,13 +354,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		81403A9259CC0E00128917DCF85976FA /* Sources */ = {
+		74E68E1E8A75BAB3B6D354299BB09D34 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				99C0C13720DA272000A8BE94 /* TJMNetworkingManager.m in Sources */,
-				99C0C13820DA272000A8BE94 /* TJMHUDHandle.m in Sources */,
-				167873F9DE9EE0208838C2F411075575 /* TJMBaseTool-dummy.m in Sources */,
+				1E89828E154CAF13B8E89DEBA7A60DCB /* TJMBaseTool-dummy.m in Sources */,
+				4CF22DE90AF2A303B18B5F1924A69A41 /* TJMHUDHandle.m in Sources */,
+				C00B02C6CC0C3EA40E828750AA4BD0C1 /* TJMNetworkingManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,7 +384,154 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		030D4F714328026B5534FAA923AD9DF6 /* Release */ = {
+		31421269A0823947E8042040BD99BA24 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E4907D860AB0902BCE2F9114EFA47036 /* TJMBaseTool.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/TJMBaseTool/TJMBaseTool-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TJMBaseTool/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/TJMBaseTool/TJMBaseTool.modulemap";
+				PRODUCT_NAME = TJMBaseTool;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		478FFF4D626C27C179A77AE4D9C484F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E695F9A84C59207CDDA052A19DA9C7EE /* Pods-TJMBaseTool_Example.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-TJMBaseTool_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-TJMBaseTool_Example/Pods-TJMBaseTool_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_TJMBaseTool_Example;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		6F9224530522DD3C735EC96CF142642E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		7DD3D756F6BEABD97FF50DBDE66A94B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E4907D860AB0902BCE2F9114EFA47036 /* TJMBaseTool.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/TJMBaseTool/TJMBaseTool-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TJMBaseTool/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/TJMBaseTool/TJMBaseTool.modulemap";
+				PRODUCT_NAME = TJMBaseTool;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		9BFDA226CC38238FB1F56D1CC09754A7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BF67BD02C23451059CCF19B986A42400 /* Pods-TJMBaseTool_Tests.release.xcconfig */;
 			buildSettings = {
@@ -406,7 +546,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-TJMBaseTool_Tests/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-TJMBaseTool_Tests/Pods-TJMBaseTool_Tests.modulemap";
@@ -424,7 +564,39 @@
 			};
 			name = Release;
 		};
-		33DA7F43A1D2FA3C74A8C8FC246E1FA6 /* Debug */ = {
+		B3CB50056EC61D528872D1F80BE4D1E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 17CE6FA0892B8A63964A1F7B61DA3644 /* Pods-TJMBaseTool_Example.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-TJMBaseTool_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-TJMBaseTool_Example/Pods-TJMBaseTool_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_TJMBaseTool_Example;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		B57951D085A1B98A97F8A1062A5E5C5B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -473,7 +645,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -484,154 +656,7 @@
 			};
 			name = Debug;
 		};
-		4A1E67F7296F394FF6F4492846F5D5F5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6C0153DE777C4C8D77B335C3F9C3B971 /* TJMBaseTool.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/TJMBaseTool/TJMBaseTool-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/TJMBaseTool/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/TJMBaseTool/TJMBaseTool.modulemap";
-				PRODUCT_NAME = TJMBaseTool;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		61BE65FD0CCBC1B1AAEDB69B4F66587E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6C0153DE777C4C8D77B335C3F9C3B971 /* TJMBaseTool.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/TJMBaseTool/TJMBaseTool-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/TJMBaseTool/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/TJMBaseTool/TJMBaseTool.modulemap";
-				PRODUCT_NAME = TJMBaseTool;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		6F805E3C0B3B9CB316D0875FDE755AFA /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E695F9A84C59207CDDA052A19DA9C7EE /* Pods-TJMBaseTool_Example.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-TJMBaseTool_Example/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-TJMBaseTool_Example/Pods-TJMBaseTool_Example.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_TJMBaseTool_Example;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		731DC216E1A58545B559F6E0A2418060 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGNING_REQUIRED = NO;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"POD_CONFIGURATION_RELEASE=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
-				STRIP_INSTALLED_PRODUCT = NO;
-				SYMROOT = "${SRCROOT}/../build";
-			};
-			name = Release;
-		};
-		BB059C83A0CA5D3503F545C158893ACA /* Debug */ = {
+		BF953B49DCCCA9D8389345E7C9D32CEA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 99AF41E78740EA90469B947F47F6927D /* Pods-TJMBaseTool_Tests.debug.xcconfig */;
 			buildSettings = {
@@ -646,7 +671,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-TJMBaseTool_Tests/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-TJMBaseTool_Tests/Pods-TJMBaseTool_Tests.modulemap";
@@ -663,46 +688,14 @@
 			};
 			name = Debug;
 		};
-		E0253AD682FED980047A5B4939FF5738 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 17CE6FA0892B8A63964A1F7B61DA3644 /* Pods-TJMBaseTool_Example.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-TJMBaseTool_Example/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-TJMBaseTool_Example/Pods-TJMBaseTool_Example.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_TJMBaseTool_Example;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				33DA7F43A1D2FA3C74A8C8FC246E1FA6 /* Debug */,
-				731DC216E1A58545B559F6E0A2418060 /* Release */,
+				B57951D085A1B98A97F8A1062A5E5C5B /* Debug */,
+				6F9224530522DD3C735EC96CF142642E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -710,8 +703,8 @@
 		61959D2DAF9CBC19DCD4FE35DA5C5205 /* Build configuration list for PBXNativeTarget "TJMBaseTool" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				61BE65FD0CCBC1B1AAEDB69B4F66587E /* Debug */,
-				4A1E67F7296F394FF6F4492846F5D5F5 /* Release */,
+				31421269A0823947E8042040BD99BA24 /* Debug */,
+				7DD3D756F6BEABD97FF50DBDE66A94B8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -719,8 +712,8 @@
 		8D8EB172EE81B5396FAC491C41CAEA80 /* Build configuration list for PBXNativeTarget "Pods-TJMBaseTool_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E0253AD682FED980047A5B4939FF5738 /* Debug */,
-				6F805E3C0B3B9CB316D0875FDE755AFA /* Release */,
+				B3CB50056EC61D528872D1F80BE4D1E7 /* Debug */,
+				478FFF4D626C27C179A77AE4D9C484F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -728,8 +721,8 @@
 		D682E8A1373FAE4A30C98F03B29DF731 /* Build configuration list for PBXNativeTarget "Pods-TJMBaseTool_Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BB059C83A0CA5D3503F545C158893ACA /* Debug */,
-				030D4F714328026B5534FAA923AD9DF6 /* Release */,
+				BF953B49DCCCA9D8389345E7C9D32CEA /* Debug */,
+				9BFDA226CC38238FB1F56D1CC09754A7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

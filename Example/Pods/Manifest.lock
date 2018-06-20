@@ -1,5 +1,5 @@
 PODS:
-  - TJMBaseTool (0.1.0)
+  - TJMBaseTool (0.0.1)
 
 DEPENDENCIES:
   - TJMBaseTool (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  TJMBaseTool: 54f8619e22b2744fbc671326e21401b036d3cc88
+  TJMBaseTool: 5f8233bc1e0d3c628fc8e47410da8ca3c7d1478a
 
 PODFILE CHECKSUM: 60135f253770b957ebc80eef06da73d9d15ec5db
 

@@ -1,8 +1,8 @@
 {
   "name": "TJMBaseTool",
-  "version": "0.1.0",
-  "summary": "A short description of TJMBaseTool.",
-  "description": "TODO: Add long description of the pod here.",
+  "version": "0.0.1",
+  "summary": "自己用的基础模块",
+  "description": "自己用的基础模块，包括AFN封装，等",
   "homepage": "https://github.com/JiamingTu/TJMBaseTool",
   "license": {
     "type": "MIT",
@@ -13,10 +13,10 @@
   },
   "source": {
     "git": "https://github.com/JiamingTu/TJMBaseTool.git",
-    "tag": "0.1.0"
+    "tag": "0.0.1"
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "9.0"
   },
   "source_files": "TJMBaseTool/Classes/**/*"
 }

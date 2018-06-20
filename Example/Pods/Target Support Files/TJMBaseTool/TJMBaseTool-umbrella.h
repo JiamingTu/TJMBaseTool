@@ -10,6 +10,8 @@
 #endif
 #endif
 
+#import "TJMHUDHandle.h"
+#import "TJMNetworkingManager.h"
 
 FOUNDATION_EXPORT double TJMBaseToolVersionNumber;
 FOUNDATION_EXPORT const unsigned char TJMBaseToolVersionString[];
