@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'TJMBaseTool_Example' do
+  pod 'TJMBaseTool', :path => '../'
+
+  target 'TJMBaseTool_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
