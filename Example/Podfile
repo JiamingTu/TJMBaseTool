@@ -1,4 +1,5 @@
-use_frameworks!
+source 'https://github.com/CocoaPods/Specs.git'
+source 'https://github.com/JiamingTu/TJMSpec.git'
 
 target 'TJMBaseTool_Example' do
   pod 'TJMBaseTool', :path => '../'
