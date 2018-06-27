@@ -7,9 +7,9 @@
 //
 
 #import "TJMNetworkingManager.h"
-#import "AppDelegate.h"
 
-#define TJMResponseMessage responseObject[@"msg"]
+#define TJMResponseMessage  responseObject[@"msg"]
+#define JMTimestamp         [NSString stringWithFormat:@"%ld",time(NULL)*1000]
 // 秘钥
 #define TJMSecretKey @"81bd443e4f5ad60bed6e00d42d8babfd"
 
@@ -48,7 +48,7 @@
 }
 #pragma  mark - 请求
 #pragma  mark GET
-+ (void)GET:(NSString *)URLString isNeedToken:(BOOL)isNeedToken parameters:(NSDictionary *)parameters progress:(NetworkingProgress)progress success:(NetworkingSuccess)success failure:(NetworkingFailure)failure  {
++ (void)GET:(NSString *)URLString isNeedToken:(BOOL)isNeedToken parameters:(NSDictionary *)parameters progress:(JMNetworkingProgress)progress success:(JMNetworkingSuccess)success failure:(JMNetworkingFailure)failure  {
     //配置token
     [self configAuthorization:isNeedToken];
     [[TJMNetworkingManager shareHttpManager] GET:URLString parameters:parameters progress:^(NSProgress * _Nonnull downloadProgress) {
@@ -56,14 +56,14 @@
             progress(downloadProgress);
         }
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        TJMLog(@"success: %@",responseObject);
+        
         [self requestSuccessWithSessionDataTask:task responseObject:responseObject success:success failure:failure];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self requestFailureWithSessionDataTask:task error:error failure:failure];
     }];
 }
 #pragma  mark POST
-+ (void)POST:(NSString *)URLString isNeedToken:(BOOL)isNeedToken parameters:(NSDictionary *)parameters progress:(NetworkingProgress)progress success:(NetworkingSuccess)success failure:(NetworkingFailure)failure {
++ (void)POST:(NSString *)URLString isNeedToken:(BOOL)isNeedToken parameters:(NSDictionary *)parameters progress:(JMNetworkingProgress)progress success:(JMNetworkingSuccess)success failure:(JMNetworkingFailure)failure {
     //配置token
     [self configAuthorization:isNeedToken];
     [[TJMNetworkingManager shareHttpManager] POST:URLString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
@@ -71,10 +71,10 @@
             progress(uploadProgress);
         }
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        TJMLog(@"%@",responseObject);
+        
         [self requestSuccessWithSessionDataTask:task responseObject:responseObject success:success failure:failure];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        TJMLog(@"%@",error);
+        
         [self requestFailureWithSessionDataTask:task error:error failure:failure];
     }];
 }
@@ -87,9 +87,9 @@
         name:(NSString *)name
     fileName:(NSString *)fileName
     mimeType:(NSString *)mimeType
-    progress:(NetworkingProgress)progress
-     success:(NetworkingSuccess)success
-     failure:(NetworkingFailure)failure {
+    progress:(JMNetworkingProgress)progress
+     success:(JMNetworkingSuccess)success
+     failure:(JMNetworkingFailure)failure {
     //配置token
     [self configAuthorization:isNeedToken];
     [[TJMNetworkingManager shareHttpManager] POST:URLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
@@ -111,9 +111,9 @@
       images:(NSArray<UIImage *> *)images
         name:(NSString *)name
     mimeType:(NSString *)mimeType
-    progress:(NetworkingProgress)progress
-     success:(NetworkingSuccess)success
-     failure:(NetworkingFailure)failure {
+    progress:(JMNetworkingProgress)progress
+     success:(JMNetworkingSuccess)success
+     failure:(JMNetworkingFailure)failure {
     //配置token
     [self configAuthorization:isNeedToken];
     [[TJMNetworkingManager shareHttpManager] POST:URLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
@@ -133,7 +133,7 @@
 }
 
 #pragma  mark - json post
-+ (void)JsonPOST:(NSString *)URLString isNeedToken:(BOOL)isNeedToken parameters:(NSDictionary *)parameters progress:(NetworkingProgress)progress success:(NetworkingSuccess)success failure:(NetworkingFailure)failure {
++ (void)JsonPOST:(NSString *)URLString isNeedToken:(BOOL)isNeedToken parameters:(NSDictionary *)parameters progress:(JMNetworkingProgress)progress success:(JMNetworkingSuccess)success failure:(JMNetworkingFailure)failure {
     //配置token
     [self configAuthorization:isNeedToken];
     [[TJMNetworkingManager shareJsonManager] POST:URLString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
@@ -143,45 +143,50 @@
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [self requestSuccessWithSessionDataTask:task responseObject:responseObject success:success failure:failure];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        TJMLog(@"JsonPOST error : %@",error);
         [self requestFailureWithSessionDataTask:task error:error failure:failure];
     }];
 }
 
 #pragma  mark - json post 参数 array
-+ (void)JsonPost:(NSString *)URLString isNeedToken:(BOOL)isNeedToken array:(NSArray *)array progress:(NetworkingProgress)progress success:(NetworkingSuccess)success failure:(NetworkingFailure)failure {
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
-    NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:URLString parameters:nil constructingBodyWithBlock:nil error:nil];
-    if (isNeedToken) [request setValue:[TJMSandBoxManager getTokenModel].realToken forHTTPHeaderField:@"Authorization"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    NSData *data = [NSJSONSerialization dataWithJSONObject:array options:NSJSONWritingPrettyPrinted error:nil];
-    [request setHTTPBody:data];
-    __block NSURLSessionDataTask *task;
-    task = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
-        if (!error) {
-            [self requestSuccessWithSessionDataTask:task responseObject:responseObject success:success failure:failure];
-        } else {
-            [self requestFailureWithSessionDataTask:task error:error failure:failure];
-        }
-    }];
-    [task resume];
++ (void)JsonPost:(NSString *)URLString isNeedToken:(BOOL)isNeedToken array:(NSArray *)array progress:(JMNetworkingProgress)progress success:(JMNetworkingSuccess)success failure:(JMNetworkingFailure)failure {
+    JMCommon *common = [JMCommon sharedCommon];
+    if (common.token) {
+        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+        NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:URLString parameters:nil constructingBodyWithBlock:nil error:nil];
+        if (isNeedToken) [request setValue:common.token forHTTPHeaderField:@"Authorization"];
+        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        NSData *data = [NSJSONSerialization dataWithJSONObject:array options:NSJSONWritingPrettyPrinted error:nil];
+        [request setHTTPBody:data];
+        __block NSURLSessionDataTask *task;
+        task = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+            if (!error) {
+                JMLog(@"json post array noerror,\n url : %@,\n responseObject : %@", URLString, responseObject);
+                [self requestSuccessWithSessionDataTask:task responseObject:responseObject success:success failure:failure];
+            } else {
+                JMLog(@"json post array error,\n url : %@,\n error : %@", URLString, error);
+                [self requestFailureWithSessionDataTask:task error:error failure:failure];
+            }
+        }];
+        [task resume];
+    } else {
+        JMLog(@"url : %@, common.token 未设置", URLString);
+    }
 }
 
 #pragma  mark PUT
-+ (void)PUT:(NSString *)URLString isNeedToken:(BOOL)isNeedToken parameters:(NSDictionary *)parameters success:(NetworkingSuccess)success failure:(NetworkingFailure)failure {
++ (void)PUT:(NSString *)URLString isNeedToken:(BOOL)isNeedToken parameters:(NSDictionary *)parameters success:(JMNetworkingSuccess)success failure:(JMNetworkingFailure)failure {
     [self configAuthorization:isNeedToken];
     [[TJMNetworkingManager shareHttpManager] PUT:URLString parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        TJMLog(@"%@",responseObject);
         [self requestSuccessWithSessionDataTask:task responseObject:responseObject success:success failure:failure];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self requestFailureWithSessionDataTask:task error:error failure:failure];
     }];
 }
 
-+ (void)PUT:(NSString *)URLString isNeedToken:(BOOL)isNeedToken data:(NSData *)data parameters:(NSDictionary *)parameters progress:(NetworkingProgress)progress success:(NetworkingSuccess)success failure:(NetworkingFailure)failure {
-    TJMTokenModel *tokenModel = [TJMSandBoxManager getTokenModel];
-    if (tokenModel) {
++ (void)PUT:(NSString *)URLString isNeedToken:(BOOL)isNeedToken data:(NSData *)data parameters:(NSDictionary *)parameters progress:(JMNetworkingProgress)progress success:(JMNetworkingSuccess)success failure:(JMNetworkingFailure)failure {
+    JMCommon *common = [JMCommon sharedCommon];
+    if (common.token) {
         NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
         AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
         NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] multipartFormRequestWithMethod:@"PUT" URLString:URLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
@@ -190,7 +195,7 @@
             }
         } error:nil];
         if (isNeedToken) {
-            [request setValue:tokenModel.realToken forHTTPHeaderField:@"Authorization"];
+            [request setValue:common.token forHTTPHeaderField:@"Authorization"];
         } else {
             [request setValue:nil forHTTPHeaderField:@"Authorization"];
         }
@@ -215,10 +220,9 @@
 }
 
 
-+ (void)DELETE:(NSString *)URLString isNeedToken:(BOOL)isNeedToken parameters:(NSDictionary *)parameters success:(NetworkingSuccess)success failure:(NetworkingFailure)failure {
++ (void)DELETE:(NSString *)URLString isNeedToken:(BOOL)isNeedToken parameters:(NSDictionary *)parameters success:(JMNetworkingSuccess)success failure:(JMNetworkingFailure)failure {
     [self configAuthorization:isNeedToken];
     [[TJMNetworkingManager shareHttpManager] DELETE:URLString parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        TJMLog(@"url:%@\n responseObject: %@", URLString,responseObject);
         [self requestSuccessWithSessionDataTask:task responseObject:responseObject success:success failure:failure];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self requestFailureWithSessionDataTask:task error:error failure:failure];
@@ -238,9 +242,9 @@
 //是否token
 + (void)configAuthorization:(BOOL)isNeed {
     if (isNeed) {
-        TJMTokenModel *tokenModel = [TJMSandBoxManager getTokenModel];
-        [[TJMNetworkingManager shareHttpManager].requestSerializer setValue:tokenModel.realToken forHTTPHeaderField:@"Authorization"];
-        [[TJMNetworkingManager shareJsonManager].requestSerializer setValue:tokenModel.realToken forHTTPHeaderField:@"Authorization"];
+        JMCommon *common = [JMCommon sharedCommon];
+        [[TJMNetworkingManager shareHttpManager].requestSerializer setValue:common.token forHTTPHeaderField:@"Authorization"];
+        [[TJMNetworkingManager shareJsonManager].requestSerializer setValue:common.token forHTTPHeaderField:@"Authorization"];
     } else {
         [[TJMNetworkingManager shareHttpManager].requestSerializer clearAuthorizationHeader];
         [[TJMNetworkingManager shareJsonManager].requestSerializer clearAuthorizationHeader];
@@ -249,7 +253,7 @@
 
 
 //网络请求成功后处理结果
-+ (void)requestSuccessWithSessionDataTask:(NSURLSessionTask *)task responseObject:(id)responseObject success:(NetworkingSuccess)success failure:(NetworkingFailure)failure {
++ (void)requestSuccessWithSessionDataTask:(NSURLSessionTask *)task responseObject:(id)responseObject success:(JMNetworkingSuccess)success failure:(JMNetworkingFailure)failure {
     if ([responseObject[@"error"] boolValue] == NO) {
         if (success) {
             if ([TJMResponseMessage isEqual:[NSNull null]]) {
@@ -263,20 +267,18 @@
         if ([responseObject[@"code"] integerValue] == 401 || [responseObject[@"code"] integerValue] == 403) {
             //未授权 授权过期
             if (failure) {
-                failure([responseObject[@"code"] integerValue], [NSString isNullToString:TJMResponseMessage]);
+                failure([responseObject[@"code"] integerValue], JMStringIsEmpty(TJMResponseMessage));
             }
             //显示 未授权 并 切换到 登录界面
-            AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-            if ([TJMSandBoxManager getTokenModel]) {
-                [TJMHUDHandle transientNoticeAtView:appDelegate.window withMessage:@"认证失败，请重新登录"];
-                [TJMSandBoxManager loginOutAndDeleteUserData];
-            }
+            if ([JMCommon sharedCommon].logout) {
+                [JMCommon sharedCommon].logout();
+            };
             
         } else {
             //其他情况
             if (failure) {
                 NSString *failString = @"";
-                if ([[NSString isNullToString:TJMResponseMessage] isEqualToString:@""]) {
+                if ([JMStringIsEmpty(TJMResponseMessage) isEqualToString:@""]) {
                     failString = @"未知错误，请尝试重新登录";
                 } else {
                     failString = TJMResponseMessage;
@@ -286,7 +288,7 @@
         }
     }
 }
-+ (void)requestFailureWithSessionDataTask:(NSURLSessionTask *)task error:(NSError *)error failure:(NetworkingFailure)failure {
++ (void)requestFailureWithSessionDataTask:(NSURLSessionTask *)task error:(NSError *)error failure:(JMNetworkingFailure)failure {
     NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
     NSInteger code = response.statusCode;
     if (code == 401 || code == 403) {
@@ -295,11 +297,10 @@
             failure(code, error.localizedDescription);
         }
         //显示 未授权 并 切换到 登录界面
-        AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        if ([TJMSandBoxManager getTokenModel]) {
-            [TJMHUDHandle transientNoticeAtView:appDelegate.window withMessage:@"认证失败，请重新登录"];
-            [TJMSandBoxManager loginOutAndDeleteUserData];
-        }
+        if ([JMCommon sharedCommon].logout) {
+            [JMCommon sharedCommon].logout();
+        };
+        
     } else if (code == 404) {
         failure(code, @"404 NOT FOUND");
     }
@@ -335,11 +336,11 @@
     //加入时间戳
     if (isNeed) {
         
-        [parameters setObject:TJMTimestamp forKey:@"timestamp"];
+        [parameters setObject:JMTimestamp forKey:@"timestamp"];
     }
     //MD5 加密
     NSString *pswd = parameters[@"pwd"];
-    if (!kStringIsEmpty(pswd)) {
+    if (![JMStringIsEmpty(pswd) isEqualToString:@""]) {
         pswd = [pswd MD5];
         parameters[@"pwd"] = pswd;
     }

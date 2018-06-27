@@ -1,16 +1,41 @@
 PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - MBProgressHUD (1.0.0)
   - TJMBaseTool (0.0.1)
 
 DEPENDENCIES:
+  - AFNetworking
+  - MBProgressHUD
   - TJMBaseTool (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - MBProgressHUD
 
 EXTERNAL SOURCES:
   TJMBaseTool:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
-  TJMBaseTool: 5f8233bc1e0d3c628fc8e47410da8ca3c7d1478a
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  TJMBaseTool: 83cd9d4aab5ac27402fd436bfddd8328109824e5
 
-PODFILE CHECKSUM: 1de99a5eabc064da87fe0a0eb2f42378a89fa621
+PODFILE CHECKSUM: 3a65d46310eafc01cc70905b979e624be924f905
 
-COCOAPODS: 1.4.0.beta.1
+COCOAPODS: 1.5.3

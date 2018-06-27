@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import <MBProgressHUD.h>
+#import "MBProgressHUD.h"
 
 @interface TJMHUDHandle : NSObject
 /**存文字1.5s后消失*/

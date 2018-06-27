@@ -3,6 +3,8 @@ source 'https://github.com/JiamingTu/TJMSpec.git'
 
 target 'TJMBaseTool_Example' do
   pod 'TJMBaseTool', :path => '../'
+  pod 'AFNetworking'
+  pod 'MBProgressHUD'
 
   target 'TJMBaseTool_Tests' do
     inherit! :search_paths

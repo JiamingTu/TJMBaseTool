@@ -1,5 +1,11 @@
 #ifdef __OBJC__
 #import <UIKit/UIKit.h>
+#import "NSString+MD5.h"
+#import "NSString+RegEx.h"
+#import "JMDefine.h"
+#import "JMCommon.h"
+#import "TJMNetworkingManager.h"
+#import "UIView+Beautify.h"
 #else
 #ifndef FOUNDATION_EXPORT
 #if defined(__cplusplus)
