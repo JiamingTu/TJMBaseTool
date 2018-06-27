@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AFNetworking.h"
+
 
 typedef void(^JMNetworkingSuccess)(id successObj,NSString *msg);
 typedef void(^JMNetworkingFailure)(NSInteger code, NSString *failString);

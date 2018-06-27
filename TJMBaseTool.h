@@ -12,4 +12,6 @@
 #import "TJMNetworkingManager.h"
 #import "TJMHUDHandle.h"
 
+#import "JMSandBoxManager.h"
+
 #endif /* TJMBaseTool_h */
