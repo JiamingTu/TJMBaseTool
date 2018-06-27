@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TJMBaseTool'
-  s.version          = '0.0.2'
+  s.version          = '0.0.3'
   s.summary          = '自己用的基础模块'
 
 # This description is used to generate tags and improve search results.
@@ -38,6 +38,6 @@ Pod::Spec.new do |s|
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking'
-  # s.dependency 'MBProgressHUD'
+   s.dependency 'AFNetworking'
+   s.dependency 'MBProgressHUD'
 end

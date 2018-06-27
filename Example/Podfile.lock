@@ -1,21 +1,23 @@
 PODS:
-  - AFNetworking (3.1.0):
-    - AFNetworking/NSURLSession (= 3.1.0)
-    - AFNetworking/Reachability (= 3.1.0)
-    - AFNetworking/Security (= 3.1.0)
-    - AFNetworking/Serialization (= 3.1.0)
-    - AFNetworking/UIKit (= 3.1.0)
-  - AFNetworking/NSURLSession (3.1.0):
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.1.0)
-  - AFNetworking/Security (3.1.0)
-  - AFNetworking/Serialization (3.1.0)
-  - AFNetworking/UIKit (3.1.0):
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
-  - MBProgressHUD (1.0.0)
-  - TJMBaseTool (0.0.1)
+  - MBProgressHUD (1.1.0)
+  - TJMBaseTool (0.0.3):
+    - AFNetworking
+    - MBProgressHUD
 
 DEPENDENCIES:
   - AFNetworking
@@ -32,9 +34,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
-  TJMBaseTool: 83cd9d4aab5ac27402fd436bfddd8328109824e5
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
+  TJMBaseTool: 1a496552a61a375b48751d72f1daece291878757
 
 PODFILE CHECKSUM: 3a65d46310eafc01cc70905b979e624be924f905
 

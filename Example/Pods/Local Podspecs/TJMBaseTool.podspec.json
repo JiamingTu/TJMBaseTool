@@ -1,6 +1,6 @@
 {
   "name": "TJMBaseTool",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "summary": "自己用的基础模块",
   "description": "自己用的基础模块，包括AFN封装，等",
   "homepage": "https://github.com/JiamingTu/TJMBaseTool",
@@ -13,10 +13,18 @@
   },
   "source": {
     "git": "https://github.com/JiamingTu/TJMBaseTool.git",
-    "tag": "0.0.1"
+    "tag": "0.0.3"
   },
   "platforms": {
     "ios": "9.0"
   },
-  "source_files": "TJMBaseTool/Classes/**/*"
+  "source_files": "TJMBaseTool/Classes/**/*",
+  "dependencies": {
+    "AFNetworking": [
+
+    ],
+    "MBProgressHUD": [
+
+    ]
+  }
 }

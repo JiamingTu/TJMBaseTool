@@ -252,9 +252,9 @@ static NSString *const SBM_ARRAY_DIR_NAME = @"jm_array";
         NSString *url = @"http://itunes.apple.com/cn/lookup";
 //    NSString *url = @"http://itunes.apple.com/lookup";
     NSDictionary *parameters = @{@"id":AppleId};
-    [TJMNetworkingManager GET:url isNeedToken:NO parameters:parameters progress:nil success:^(id successObj, NSString *msg) {
-        if (successObj) {
-            NSArray *array = successObj[@"results"];
+    [[AFHTTPSessionManager manager] GET:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if (responseObject) {
+            NSArray *array = responseObject[@"results"];
             if (array.count != 0) {// 先判断返回的数据是否为空
                 NSDictionary *dict = array[0];
                 NSString *version = dict[@"version"];
@@ -263,8 +263,8 @@ static NSString *const SBM_ARRAY_DIR_NAME = @"jm_array";
                 }
             }
         }
-    } failure:^(NSInteger code, NSString *failString) {
-        JMLog(@"get version from apple.com fail : %@", failString);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        JMLog(@"get version from apple.com fail : %@", error.localizedDescription);
     }];
 }
 

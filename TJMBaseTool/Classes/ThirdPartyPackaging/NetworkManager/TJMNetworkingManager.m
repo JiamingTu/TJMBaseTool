@@ -7,7 +7,7 @@
 //
 
 #import "TJMNetworkingManager.h"
-#import "AFNetworking.h"
+
 #define TJMResponseMessage  responseObject[@"msg"]
 #define JMTimestamp         [NSString stringWithFormat:@"%ld",time(NULL)*1000]
 // 秘钥
