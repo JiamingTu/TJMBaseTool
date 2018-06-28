@@ -6,7 +6,8 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "JMDefine.h"
+#import "JMCommon.h"
 @interface JMSandBoxManager : NSObject
 
 

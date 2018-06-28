@@ -7,6 +7,7 @@
 //
 
 #import "UIViewController+Config.h"
+#import "JMCommon.h"
 const char *kTJMAppDelegateKey = "AppDelegateKey";
 @implementation UIViewController (Config)
 //#pragma  mark 增加AppDelegate 属性

@@ -60,7 +60,7 @@
     if (accumulator > 2) outputLength++;
     
     //truncate data to match actual output length
-    outputData.length = outputLength;
+    outputData.length = (NSInteger)outputLength;
     return outputLength? outputData: nil;
 }
 

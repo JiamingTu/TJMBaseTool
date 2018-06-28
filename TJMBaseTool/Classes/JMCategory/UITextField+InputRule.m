@@ -7,7 +7,7 @@
 //
 
 #import "UITextField+InputRule.h"
-
+#import "NSString+RegEx.h"
 @implementation UITextField (InputRule)
 
 #pragma  mark - 输入规则

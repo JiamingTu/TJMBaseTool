@@ -16,5 +16,5 @@
 - (void)tjm_removeBackgroundView;
 
 /**导航基础设置*/
-- (void)tjm_navigationBarBasicSettingWithShadow:(BOOL)isShadow;
+- (void)tjm_navigationBarBasicSettingWithBgColor:(UIColor *)color showLine:(BOOL)showLine shadow:(BOOL)isShadow;
 @end

@@ -9,7 +9,7 @@
 #import "UINavigationController+Cloudox.h"
 #import <objc/runtime.h>
 #import "UIViewController+Cloudox.h"
-
+#import "JMDefine.h"
 @implementation UINavigationController (Cloudox)
 
 //// 设置导航栏背景透明度

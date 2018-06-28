@@ -7,7 +7,7 @@
 //
 
 #import "UIView+Beautify.h"
-
+#import "JMDefine.h"
 @implementation UIView (Beautify)
 
 - (void)addShadowWithOffset:(CGSize)offset radius:(CGFloat)radius color:(UIColor *)color opacity:(CGFloat)opacity {

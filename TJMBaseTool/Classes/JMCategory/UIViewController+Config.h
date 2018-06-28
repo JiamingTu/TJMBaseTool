@@ -46,8 +46,8 @@ typedef void(^ButtonBlock)(UIButton *button);
 - (__kindof UIViewController *)popTargetViewControllerWithViewControllerNumber:(NSInteger)number;
 /**调起alert 选择相册或相机*/
 - (void)alertSelectImagePickerVCSourceTypeWithImagePickerVC:(UIImagePickerController *)imagePickerVC delegate:(id)delegate;
-/**弹出登录界面*/
-- (void)presentLoginAndRegisterNavigationController;
+/**弹出界面*/
+- (void)presentViewControllerWithStoryboardName:(NSString *)name storyboardId:(NSString *)storyboardId;
 
 /**设置标题透明度*/
 - (void)setTitleViewAlpha:(CGFloat)alpha;

@@ -8,6 +8,8 @@
 
 #import "UINavigationBar+BackgroundColor.h"
 #import <objc/runtime.h>
+#import "JMDefine.h"
+#import "UIView+Beautify.h"
 @implementation UINavigationBar (BackgroundColor)
 
 - (UIView *)overlay

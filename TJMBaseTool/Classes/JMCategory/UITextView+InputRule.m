@@ -6,7 +6,7 @@
 //
 
 #import "UITextView+InputRule.h"
-
+#import "NSString+RegEx.h"
 @implementation UITextView (InputRule)
 
 #pragma  mark - 输入规则
