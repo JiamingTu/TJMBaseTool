@@ -1,6 +1,6 @@
 {
   "name": "TJMBaseTool",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "summary": "自己用的基础模块",
   "description": "自己用的基础模块，包括AFN封装，等",
   "homepage": "https://github.com/JiamingTu/TJMBaseTool",
@@ -13,13 +13,19 @@
   },
   "source": {
     "git": "https://github.com/JiamingTu/TJMBaseTool.git",
-    "tag": "0.0.3"
+    "tag": "0.0.4"
   },
   "platforms": {
     "ios": "9.0"
   },
-  "public_header_files": "TJMBaseTool/Classes/TJMBaseTool.h",
-  "source_files": "TJMBaseTool/Classes/**/*",
+  "public_header_files": [
+    "TJMBaseTool/Classes/TJMBaseTool.h",
+    "TJMBaseTool/Classes/**/*.h"
+  ],
+  "source_files": [
+    "TJMBaseTool/Classes/**/*",
+    "TJMBaseTool/Classes/*"
+  ],
   "frameworks": "UIKit",
   "dependencies": {
     "AFNetworking": [
@@ -28,5 +34,56 @@
     "MBProgressHUD": [
 
     ]
-  }
+  },
+  "subspecs": [
+    {
+      "name": "Common",
+      "public_header_files": "TJMBaseTool/Classes/Common/*.h",
+      "source_files": "TJMBaseTool/Classes/Common/*.{h,m}"
+    },
+    {
+      "name": "Encryption",
+      "public_header_files": "TJMBaseTool/Classes/Encryption/*.h",
+      "source_files": "TJMBaseTool/Classes/Encryption/*.{h,m}"
+    },
+    {
+      "name": "JMCategory",
+      "dependencies": {
+        "TJMBaseTool/Common": [
+
+        ]
+      },
+      "public_header_files": "TJMBaseTool/Classes/JMCategory/*.h",
+      "source_files": "TJMBaseTool/Classes/JMCategory/*.{h,m}"
+    },
+    {
+      "name": "NetworkManager",
+      "dependencies": {
+        "TJMBaseTool/Common": [
+
+        ],
+        "TJMBaseTool/JMCategory": [
+
+        ],
+        "TJMBaseTool/Encryption": [
+
+        ]
+      },
+      "public_header_files": "TJMBaseTool/Classes/NetworkManager/*.h",
+      "source_files": "TJMBaseTool/Classes/NetworkManager/*.{h,m}"
+    },
+    {
+      "name": "HUDManager",
+      "dependencies": {
+        "TJMBaseTool/Common": [
+
+        ],
+        "TJMBaseTool/JMCategory": [
+
+        ]
+      },
+      "public_header_files": "TJMBaseTool/Classes/HUDManager/*.h",
+      "source_files": "TJMBaseTool/Classes/HUDManager/*.{h,m}"
+    }
+  ]
 }

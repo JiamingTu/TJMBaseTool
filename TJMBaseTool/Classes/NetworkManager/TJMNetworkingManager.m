@@ -51,7 +51,7 @@
 }
 #pragma  mark - 请求
 #pragma  mark GET
-+ (void)GET:(NSString *)URLString isNeedToken:(BOOL)isNeedToken parameters:(NSDictionary *)parameters progress:(JMNetworkingProgress)progress success:(JMNetworkingSuccess)success failure:(JMNetworkingFailure)failure  {
++ (void)GET:(NSString *)URLString isNeedToken:(BOOL)isNeedToken parameters:(NSDictionary *)parameters progress:(void(^)(NSProgress *progress))progress success:(void(^)(id successObj,NSString *msg))success failure:(void(^)(NSInteger code, NSString *failString))failure  {
     //配置token
     [self configAuthorization:isNeedToken];
     [[TJMNetworkingManager shareHttpManager] GET:URLString parameters:parameters progress:^(NSProgress * _Nonnull downloadProgress) {
@@ -66,7 +66,7 @@
     }];
 }
 #pragma  mark POST
-+ (void)POST:(NSString *)URLString isNeedToken:(BOOL)isNeedToken parameters:(NSDictionary *)parameters progress:(JMNetworkingProgress)progress success:(JMNetworkingSuccess)success failure:(JMNetworkingFailure)failure {
++ (void)POST:(NSString *)URLString isNeedToken:(BOOL)isNeedToken parameters:(NSDictionary *)parameters progress:(void(^)(NSProgress *progress))progress success:(void(^)(id successObj,NSString *msg))success failure:(void(^)(NSInteger code, NSString *failString))failure {
     //配置token
     [self configAuthorization:isNeedToken];
     [[TJMNetworkingManager shareHttpManager] POST:URLString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
@@ -90,9 +90,9 @@
         name:(NSString *)name
     fileName:(NSString *)fileName
     mimeType:(NSString *)mimeType
-    progress:(JMNetworkingProgress)progress
-     success:(JMNetworkingSuccess)success
-     failure:(JMNetworkingFailure)failure {
+    progress:(void(^)(NSProgress *progress))progress
+     success:(void(^)(id successObj,NSString *msg))success
+     failure:(void(^)(NSInteger code, NSString *failString))failure {
     //配置token
     [self configAuthorization:isNeedToken];
     [[TJMNetworkingManager shareHttpManager] POST:URLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
@@ -114,9 +114,9 @@
       images:(NSArray<UIImage *> *)images
         name:(NSString *)name
     mimeType:(NSString *)mimeType
-    progress:(JMNetworkingProgress)progress
-     success:(JMNetworkingSuccess)success
-     failure:(JMNetworkingFailure)failure {
+    progress:(void(^)(NSProgress *progress))progress
+     success:(void(^)(id successObj,NSString *msg))success
+     failure:(void(^)(NSInteger code, NSString *failString))failure {
     //配置token
     [self configAuthorization:isNeedToken];
     [[TJMNetworkingManager shareHttpManager] POST:URLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
@@ -136,7 +136,7 @@
 }
 
 #pragma  mark - json post
-+ (void)JsonPOST:(NSString *)URLString isNeedToken:(BOOL)isNeedToken parameters:(NSDictionary *)parameters progress:(JMNetworkingProgress)progress success:(JMNetworkingSuccess)success failure:(JMNetworkingFailure)failure {
++ (void)JsonPOST:(NSString *)URLString isNeedToken:(BOOL)isNeedToken parameters:(NSDictionary *)parameters progress:(void(^)(NSProgress *progress))progress success:(void(^)(id successObj,NSString *msg))success failure:(void(^)(NSInteger code, NSString *failString))failure {
     //配置token
     [self configAuthorization:isNeedToken];
     [[TJMNetworkingManager shareJsonManager] POST:URLString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
@@ -151,7 +151,7 @@
 }
 
 #pragma  mark - json post 参数 array
-+ (void)JsonPost:(NSString *)URLString isNeedToken:(BOOL)isNeedToken array:(NSArray *)array progress:(JMNetworkingProgress)progress success:(JMNetworkingSuccess)success failure:(JMNetworkingFailure)failure {
++ (void)JsonPost:(NSString *)URLString isNeedToken:(BOOL)isNeedToken array:(NSArray *)array uploadProgressBlock:(void(^)(NSProgress *progress))uploadProgressBlock success:(void(^)(id successObj,NSString *msg))success failure:(void(^)(NSInteger code, NSString *failString))failure {
     JMCommon *common = [JMCommon sharedCommon];
     if (common.token) {
         NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -162,7 +162,11 @@
         NSData *data = [NSJSONSerialization dataWithJSONObject:array options:NSJSONWritingPrettyPrinted error:nil];
         [request setHTTPBody:data];
         __block NSURLSessionDataTask *task;
-        task = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        task = [manager dataTaskWithRequest:request uploadProgress:^(NSProgress * _Nonnull uploadProgress) {
+            if (uploadProgressBlock) uploadProgressBlock(uploadProgress);
+        } downloadProgress:^(NSProgress * _Nonnull downloadProgress) {
+            
+        } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
             if (!error) {
                 JMLog(@"json post array noerror,\n url : %@,\n responseObject : %@", URLString, responseObject);
                 [self requestSuccessWithSessionDataTask:task responseObject:responseObject success:success failure:failure];
@@ -178,7 +182,7 @@
 }
 
 #pragma  mark PUT
-+ (void)PUT:(NSString *)URLString isNeedToken:(BOOL)isNeedToken parameters:(NSDictionary *)parameters success:(JMNetworkingSuccess)success failure:(JMNetworkingFailure)failure {
++ (void)PUT:(NSString *)URLString isNeedToken:(BOOL)isNeedToken parameters:(NSDictionary *)parameters success:(void(^)(id successObj,NSString *msg))success failure:(void(^)(NSInteger code, NSString *failString))failure {
     [self configAuthorization:isNeedToken];
     [[TJMNetworkingManager shareHttpManager] PUT:URLString parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [self requestSuccessWithSessionDataTask:task responseObject:responseObject success:success failure:failure];
@@ -187,7 +191,7 @@
     }];
 }
 
-+ (void)PUT:(NSString *)URLString isNeedToken:(BOOL)isNeedToken data:(NSData *)data parameters:(NSDictionary *)parameters progress:(JMNetworkingProgress)progress success:(JMNetworkingSuccess)success failure:(JMNetworkingFailure)failure {
++ (void)PUT:(NSString *)URLString isNeedToken:(BOOL)isNeedToken data:(NSData *)data parameters:(NSDictionary *)parameters progress:(void(^)(NSProgress *progress))progress success:(void(^)(id successObj,NSString *msg))success failure:(void(^)(NSInteger code, NSString *failString))failure {
     JMCommon *common = [JMCommon sharedCommon];
     if (common.token) {
         NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -223,7 +227,7 @@
 }
 
 
-+ (void)DELETE:(NSString *)URLString isNeedToken:(BOOL)isNeedToken parameters:(NSDictionary *)parameters success:(JMNetworkingSuccess)success failure:(JMNetworkingFailure)failure {
++ (void)DELETE:(NSString *)URLString isNeedToken:(BOOL)isNeedToken parameters:(NSDictionary *)parameters success:(void(^)(id successObj,NSString *msg))success failure:(void(^)(NSInteger code, NSString *failString))failure {
     [self configAuthorization:isNeedToken];
     [[TJMNetworkingManager shareHttpManager] DELETE:URLString parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [self requestSuccessWithSessionDataTask:task responseObject:responseObject success:success failure:failure];
@@ -256,7 +260,7 @@
 
 
 //网络请求成功后处理结果
-+ (void)requestSuccessWithSessionDataTask:(NSURLSessionTask *)task responseObject:(id)responseObject success:(JMNetworkingSuccess)success failure:(JMNetworkingFailure)failure {
++ (void)requestSuccessWithSessionDataTask:(NSURLSessionTask *)task responseObject:(id)responseObject success:(void(^)(id successObj,NSString *msg))success failure:(void(^)(NSInteger code, NSString *failString))failure {
     if ([responseObject[@"error"] boolValue] == NO) {
         if (success) {
             if ([TJMResponseMessage isEqual:[NSNull null]]) {
@@ -291,7 +295,7 @@
         }
     }
 }
-+ (void)requestFailureWithSessionDataTask:(NSURLSessionTask *)task error:(NSError *)error failure:(JMNetworkingFailure)failure {
++ (void)requestFailureWithSessionDataTask:(NSURLSessionTask *)task error:(NSError *)error failure:(void(^)(NSInteger code, NSString *failString))failure {
     NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
     NSInteger code = response.statusCode;
     if (code == 401 || code == 403) {

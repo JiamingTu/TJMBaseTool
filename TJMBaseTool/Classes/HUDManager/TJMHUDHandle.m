@@ -70,9 +70,12 @@ static const CGFloat alpha = 0.9f;
     [TJMHUDHandle hiddenHUDForView:view];
     MBProgressHUD *progressHUD = [MBProgressHUD showHUDAddedTo:view animated:YES];
     progressHUD.mode = MBProgressHUDModeIndeterminate;
-    [UIActivityIndicatorView appearanceWhenContainedIn:[MBProgressHUD class], nil].color = [JMCommon sharedCommon].hudTextColor ? [JMCommon sharedCommon].hudTextColor : HUD_TEXTCOLOR;;
-    progressHUD.activityIndicatorColor = [JMCommon sharedCommon].hudTextColor ? [JMCommon sharedCommon].hudTextColor : HUD_TEXTCOLOR;;
+
+    [UIActivityIndicatorView appearanceWhenContainedInInstancesOfClasses:@[[MBProgressHUD class]]].color = [JMCommon sharedCommon].hudTextColor ? [JMCommon sharedCommon].hudTextColor : HUD_TEXTCOLOR;
+//    progressHUD.activityIndicatorColor = [JMCommon sharedCommon].hudTextColor ? [JMCommon sharedCommon].hudTextColor : HUD_TEXTCOLOR;
+//    [UIActivityIndicatorView appearanceWhenContainedIn:[MBProgressHUD class], nil].color = [JMCommon sharedCommon].hudTextColor ? [JMCommon sharedCommon].hudTextColor : HUD_TEXTCOLOR;;
     progressHUD.label.text = message;
+    progressHUD.label.textColor = [JMCommon sharedCommon].hudTextColor ? [JMCommon sharedCommon].hudTextColor : HUD_TEXTCOLOR;;
     progressHUD.label.font = [UIFont systemFontOfSize:13];
     progressHUD.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
     progressHUD.bezelView.backgroundColor = [JMCommon sharedCommon].hudBackgroundColor ? [JMCommon sharedCommon].hudBackgroundColor : HUD_BEZELVIEWCOLOR;
@@ -95,7 +98,7 @@ static const CGFloat alpha = 0.9f;
     progressHUD.mode = MBProgressHUDModeAnnularDeterminate;
     progressHUD.label.text = message;
     progressHUD.label.font = [UIFont systemFontOfSize:13];
-    progressHUD.label.textColor = [JMCommon sharedCommon].hudTextColor ? [JMCommon sharedCommon].hudTextColor : HUD_TEXTCOLOR;;
+    progressHUD.label.textColor = [JMCommon sharedCommon].hudTextColor ? [JMCommon sharedCommon].hudTextColor : HUD_TEXTCOLOR;
     progressHUD.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
     progressHUD.bezelView.backgroundColor = [JMCommon sharedCommon].hudBackgroundColor ? [JMCommon sharedCommon].hudBackgroundColor : HUD_BEZELVIEWCOLOR;
     progressHUD.alpha = alpha;
@@ -105,7 +108,6 @@ static const CGFloat alpha = 0.9f;
     progressHUD.opaque = NO;
     return progressHUD;
 }
-
 
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "TJMViewController.h"
-
+#import <TJMBaseTool.h>
 @interface TJMViewController ()
 
 @end
@@ -18,6 +18,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    [TJMHUDHandle showRequestHUDAtView:self.view message:@"哈哈哈"];
 }
 
 - (void)didReceiveMemoryWarning

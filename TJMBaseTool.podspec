@@ -29,15 +29,47 @@ Pod::Spec.new do |s|
   # s.social_media_url = ''
 
   s.ios.deployment_target = '9.0'
-  s.public_header_files = 'TJMBaseTool/Classes/TJMBaseTool.h'
-  s.source_files = 'TJMBaseTool/Classes/**/*'
+  s.public_header_files = 'TJMBaseTool/Classes/TJMBaseTool.h','TJMBaseTool/Classes/**/*.h'
+  s.source_files = 'TJMBaseTool/Classes/**/*','TJMBaseTool/Classes/*'
   
   # s.resource_bundles = {
   #   'TJMBaseTool' => ['TJMBaseTool/Assets/*.png']
   # }
 
 # s.public_header_files = 'Pod/Classes/**/*.h'
+
   s.frameworks = 'UIKit'
   s.dependency 'AFNetworking'
   s.dependency 'MBProgressHUD'
+
+  s.subspec 'Common' do |ss|
+      ss.public_header_files = 'TJMBaseTool/Classes/Common/*.h'
+      ss.source_files = 'TJMBaseTool/Classes/Common/*.{h,m}'
+  end
+  
+  s.subspec 'Encryption' do |ss|
+      ss.public_header_files = 'TJMBaseTool/Classes/Encryption/*.h'
+      ss.source_files = 'TJMBaseTool/Classes/Encryption/*.{h,m}'
+  end
+  
+  s.subspec 'JMCategory' do |ss|
+      ss.dependency 'TJMBaseTool/Common'
+      ss.public_header_files = 'TJMBaseTool/Classes/JMCategory/*.h'
+      ss.source_files = 'TJMBaseTool/Classes/JMCategory/*.{h,m}'
+  end
+  
+  s.subspec 'NetworkManager' do |ss|
+      ss.dependency 'TJMBaseTool/Common'
+      ss.dependency 'TJMBaseTool/JMCategory'
+      ss.dependency 'TJMBaseTool/Encryption'
+      ss.public_header_files = 'TJMBaseTool/Classes/NetworkManager/*.h'
+      ss.source_files = 'TJMBaseTool/Classes/NetworkManager/*.{h,m}'
+  end
+  
+  s.subspec 'HUDManager' do |ss|
+      ss.dependency 'TJMBaseTool/Common'
+      ss.dependency 'TJMBaseTool/JMCategory'
+      ss.public_header_files = 'TJMBaseTool/Classes/HUDManager/*.h'
+      ss.source_files = 'TJMBaseTool/Classes/HUDManager/*.{h,m}'
+  end
 end
