@@ -6,7 +6,6 @@
 //
 
 #import "JMCommon.h"
-
 @implementation JMCommon
 
 SingletonM(Common)
@@ -32,7 +31,8 @@ SingletonM(Common)
     return nil;
 }
 
-+ (BOOL)isAppFirstRun{
+#pragma  mark - APP是否第一次使用
++ (BOOL)isAppFirstRun {
     NSString *currentVersion = [[[NSBundle mainBundle] infoDictionary]
                                 objectForKey:@"CFBundleShortVersionString"];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -51,5 +51,7 @@ SingletonM(Common)
     }
     return NO;
 }
+
+
 
 @end

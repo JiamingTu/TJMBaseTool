@@ -8,6 +8,8 @@
 #ifndef JMDefine_h
 #define JMDefine_h
 
+#define JM_COMMON [JMCommon sharedCommon]
+
 //屏幕尺寸 长边始终是高
 #define JMScreenWidth ([UIScreen mainScreen].bounds.size.width < [UIScreen mainScreen].bounds.size.height ? [UIScreen mainScreen].bounds.size.width : [UIScreen mainScreen].bounds.size.height)
 #define JMScreenHeight ([UIScreen mainScreen].bounds.size.width > [UIScreen mainScreen].bounds.size.height ? [UIScreen mainScreen].bounds.size.width : [UIScreen mainScreen].bounds.size.height)
