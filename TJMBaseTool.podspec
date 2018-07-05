@@ -56,6 +56,10 @@ Pod::Spec.new do |s|
       ss.dependency 'TJMBaseTool/Common'
       ss.public_header_files = 'TJMBaseTool/Classes/JMCategory/*.h'
       ss.source_files = 'TJMBaseTool/Classes/JMCategory/*.{h,m}'
+      ss.subspec 'NaaviAlpha' do |sss|
+          sss.public_header_files = 'TJMBaseTool/Classes/JMCategory/NaviAlpha/*.h'
+          sss.source_files = 'TJMBaseTool/Classes/JMCategory/*.{h,m}'
+      end
   end
   
   s.subspec 'NetworkManager' do |ss|

@@ -9,7 +9,6 @@
 #import "UINavigationController+Cloudox.h"
 #import <objc/runtime.h>
 #import "UIViewController+Cloudox.h"
-#import "JMDefine.h"
 @implementation UINavigationController (Cloudox)
 
 //// 设置导航栏背景透明度
@@ -36,7 +35,7 @@
     //iOS10之前为 _UINavigationBarBackground, iOS10为 _UIBarBackground
     //_UINavigationBarBackground实际为UIImageView子类，而_UIBarBackground是UIView子类
     //之前setBackgroundImage直接赋值给_UINavigationBarBackground，现在则是设置后为_UIBarBackground增加一个UIImageView子控件方式去呈现图片
-    if (JMCurrentDevice >= 10.0) {
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 10.0) {
         UIView *_UIBackground;
         NSString *targetName = @"_UIBarBackground";
         Class _UIBarBackgroundClass = NSClassFromString(targetName);
@@ -117,7 +116,7 @@
         NSTimeInterval cancelDuration = [context transitionDuration] * (double)[context percentComplete];
         [UIView animateWithDuration:cancelDuration animations:^{
             CGFloat nowAlpha = [[context viewControllerForKey:UITransitionContextFromViewControllerKey].navBarBgAlpha floatValue];
-            JMLog(@"自动取消返回到alpha：%f", nowAlpha);
+            //NSLog(@"自动取消返回到alpha：%f", nowAlpha);
             [self setNeedsNavigationBackground:nowAlpha];
         }];
     } else {// 自动完成了返回手势
@@ -125,7 +124,7 @@
         [UIView animateWithDuration:finishDuration animations:^{
             CGFloat nowAlpha = [[context viewControllerForKey:
                                  UITransitionContextToViewControllerKey].navBarBgAlpha floatValue];
-            JMLog(@"自动完成返回到alpha：%f", nowAlpha);
+            //NSLog(@"自动完成返回到alpha：%f", nowAlpha);
             [self setNeedsNavigationBackground:nowAlpha];
         }];
     }
