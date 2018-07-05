@@ -29,14 +29,14 @@ Pod::Spec.new do |s|
   # s.social_media_url = ''
 
   s.ios.deployment_target = '9.0'
-  s.public_header_files = 'TJMBaseTool/Classes/TJMBaseTool.h','TJMBaseTool/Classes/**/*.h'
-  s.source_files = 'TJMBaseTool/Classes/**/*','TJMBaseTool/Classes/*'
+  # s.public_header_files = 'TJMBaseTool/Classes/TJMBaseTool.h','TJMBaseTool/Classes/**/*.h'
+  # s.source_files = 'TJMBaseTool/Classes/**/*','TJMBaseTool/Classes/*'
   
   # s.resource_bundles = {
   #   'TJMBaseTool' => ['TJMBaseTool/Assets/*.png']
   # }
 
-# s.public_header_files = 'Pod/Classes/**/*.h'
+  # s.public_header_files = 'Pod/Classes/**/*.h'
 
   s.frameworks = 'UIKit'
   s.dependency 'AFNetworking'
