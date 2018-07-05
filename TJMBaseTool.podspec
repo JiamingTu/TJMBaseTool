@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TJMBaseTool'
-  s.version          = '0.0.8'
+  s.version          = '0.0.9'
   s.summary          = '自己用的基础模块'
 
 # This description is used to generate tags and improve search results.
@@ -29,8 +29,8 @@ Pod::Spec.new do |s|
   # s.social_media_url = ''
 
   s.ios.deployment_target = '9.0'
-  s.public_header_files = 'TJMBaseTool/Classes/TJMBaseTool.h', 'TJMBaseTool/Classes/**/*.h','TJMBaseTool/Classes/**/**/*.h'
-  s.source_files = 'TJMBaseTool/Classes/TJMBaseTool.h', 'TJMBaseTool/Classes/**/*.h','TJMBaseTool/Classes/**/**/*.h'
+  #s.public_header_files = 'TJMBaseTool/Classes/TJMBaseTool.h', 'TJMBaseTool/Classes/**/*.h','TJMBaseTool/Classes/**/**/*.h'
+  
   
   # s.resource_bundles = {
   #   'TJMBaseTool' => ['TJMBaseTool/Assets/*.png']
@@ -76,4 +76,14 @@ Pod::Spec.new do |s|
       ss.public_header_files = 'TJMBaseTool/Classes/HUDManager/*.h'
       ss.source_files = 'TJMBaseTool/Classes/HUDManager/*.{h,m}'
   end
+  
+  s.subspec 'SandBoxManager' do |ss|
+      ss.dependency 'TJMBaseTool/Common'
+      ss.dependency 'AFNetworking'
+      ss.public_header_files = 'TJMBaseTool/Classes/SandBoxManager/*.h'
+      ss.source_files = 'TJMBaseTool/Classes/SandBoxManager/*.{h,m}'
+  end
+  
+  s.source_files = 'TJMBaseTool/Classes/TJMBaseTool.h'
+  
 end
