@@ -154,7 +154,7 @@
     NSMutableString *newValue = [self.text mutableCopy];
     //拼接 下一位 得到输入框输入完成后的值
     [newValue replaceCharactersInRange:range withString:string];
-    if (newValue.length <= 13 && [newValue isNumber]) {
+    if (newValue.length <= 11 && [newValue isNumber]) {
         return YES;
     }
     return NO;

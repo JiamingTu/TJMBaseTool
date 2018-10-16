@@ -27,6 +27,7 @@
         httpManager.responseSerializer = jsonResponseSerializer;
         httpManager.requestSerializer = [AFHTTPRequestSerializer serializer];
         httpManager.requestSerializer.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[@"PUT", @"GET"]];
+//        httpManager.requestSerializer.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[@"GET"]];
         // 设置超时时间
         [httpManager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
         httpManager.requestSerializer.timeoutInterval = 6.0f;
@@ -151,7 +152,7 @@
 }
 
 #pragma  mark - json post 参数 array
-+ (void)JsonPost:(NSString *)URLString isNeedToken:(BOOL)isNeedToken array:(NSArray *)array uploadProgressBlock:(void(^)(NSProgress *progress))uploadProgressBlock success:(void(^)(id successObj,NSString *msg))success failure:(void(^)(NSInteger code, NSString *failString))failure {
++ (void)JsonPOST:(NSString *)URLString isNeedToken:(BOOL)isNeedToken array:(NSArray *)array uploadProgressBlock:(void(^)(NSProgress *progress))uploadProgressBlock success:(void(^)(id successObj,NSString *msg))success failure:(void(^)(NSInteger code, NSString *failString))failure {
     JMCommon *common = [JMCommon sharedCommon];
     if (common.token) {
         NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -191,7 +192,7 @@
     }];
 }
 
-+ (void)PUT:(NSString *)URLString isNeedToken:(BOOL)isNeedToken data:(NSData *)data parameters:(NSDictionary *)parameters progress:(void(^)(NSProgress *progress))progress success:(void(^)(id successObj,NSString *msg))success failure:(void(^)(NSInteger code, NSString *failString))failure {
++ (void)JsonPUT:(NSString *)URLString isNeedToken:(BOOL)isNeedToken data:(NSData *)data parameters:(NSDictionary *)parameters progress:(void(^)(NSProgress *progress))progress success:(void(^)(id successObj,NSString *msg))success failure:(void(^)(NSInteger code, NSString *failString))failure {
     JMCommon *common = [JMCommon sharedCommon];
     if (common.token) {
         NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -206,10 +207,10 @@
         } else {
             [request setValue:nil forHTTPHeaderField:@"Authorization"];
         }
-        //        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-//        if (parameters && parameters.count > 0) {
-//            [request setHTTPBody:[NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:nil]];
-//        }
+        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        if (parameters && parameters.count > 0) {
+            [request setHTTPBody:[NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:nil]];
+        }
         __block NSURLSessionDataTask *task;
         task = [manager uploadTaskWithStreamedRequest:request progress:^(NSProgress * _Nonnull uploadProgress) {
             if (progress) {
@@ -226,6 +227,35 @@
     }
 }
 
++ (void)JsonPUT:(NSString *)URLString isNeedToken:(BOOL)isNeedToken array:(NSArray *)array uploadProgressBlock:(void(^)(NSProgress *progress))uploadProgressBlock success:(void(^)(id successObj,NSString *msg))success failure:(void(^)(NSInteger code, NSString *failString))failure {
+    JMCommon *common = [JMCommon sharedCommon];
+    if (common.token) {
+        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+        NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] multipartFormRequestWithMethod:@"PUT" URLString:URLString parameters:nil constructingBodyWithBlock:nil error:nil];
+        if (isNeedToken) [request setValue:common.token forHTTPHeaderField:@"Authorization"];
+        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        NSData *data = [NSJSONSerialization dataWithJSONObject:array options:NSJSONWritingPrettyPrinted error:nil];
+        [request setHTTPBody:data];
+        __block NSURLSessionDataTask *task;
+        task = [manager dataTaskWithRequest:request uploadProgress:^(NSProgress * _Nonnull uploadProgress) {
+            if (uploadProgressBlock) uploadProgressBlock(uploadProgress);
+        } downloadProgress:^(NSProgress * _Nonnull downloadProgress) {
+            
+        } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+            if (!error) {
+                JMLog(@"json post array noerror,\n url : %@,\n responseObject : %@", URLString, responseObject);
+                [self requestSuccessWithSessionDataTask:task responseObject:responseObject success:success failure:failure];
+            } else {
+                JMLog(@"json post array error,\n url : %@,\n error : %@", URLString, error);
+                [self requestFailureWithSessionDataTask:task error:error failure:failure];
+            }
+        }];
+        [task resume];
+    } else {
+        JMLog(@"url : %@, common.token 未设置", URLString);
+    }
+}
 
 + (void)DELETE:(NSString *)URLString isNeedToken:(BOOL)isNeedToken parameters:(NSDictionary *)parameters success:(void(^)(id successObj,NSString *msg))success failure:(void(^)(NSInteger code, NSString *failString))failure {
     [self configAuthorization:isNeedToken];
@@ -337,7 +367,7 @@
 }
 
 #pragma  mark - sign 处理
-+ (NSDictionary *)signWithDictionary:(NSDictionary *)dictionary needTimestamp:(BOOL)isNeed {
++ (NSDictionary *)signWithDictionary:(NSDictionary *)dictionary needTimestamp:(BOOL)isNeed passwordKey:(NSString *)passwordKey {
     //变为可变数组
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:dictionary];
     //加入时间戳
@@ -346,10 +376,10 @@
         [parameters setObject:JMTimestamp forKey:@"timestamp"];
     }
     //MD5 加密
-    NSString *pswd = parameters[@"pwd"];
+    NSString *pswd = parameters[passwordKey];
     if (![JMStringIsEmpty(pswd) isEqualToString:@""]) {
         pswd = [pswd MD5];
-        parameters[@"pwd"] = pswd;
+        parameters[passwordKey] = pswd;
     }
     //升序得到 健值对应的两个数组
     NSArray *allKeyArray = [parameters allKeys];
@@ -378,7 +408,6 @@
     //添加健值  sign
     [parameters setObject:signString forKey:@"sign"];
     return parameters;
-    
 }
 
 

@@ -42,14 +42,17 @@ static NSString *const SBM_ARRAY_DIR_NAME = @"jm_array";
     //是否遵循NSCoding 协议 不遵循 返回NO
     BOOL isCoding = [[instance class] conformsToProtocol:@protocol(NSCoding)];
     if (isCoding) {
-        BOOL result = [NSKeyedArchiver archiveRootObject:instance toFile:[self createDirectoryAtDocument:SBM_INSTANCE_DIR_NAME]];
+        NSString *filePath = [[self createDirectoryAtDocument:SBM_INSTANCE_DIR_NAME] stringByAppendingPathComponent:name];
+        JMLog(@"%@", filePath);
+        BOOL result = [NSKeyedArchiver archiveRootObject:instance toFile: filePath];
         return result;
     }
     return NO;
 }
 
 + (id)getInstanceWithName:(NSString *)name {
-    id instance = [NSKeyedUnarchiver unarchiveObjectWithFile:[self createDirectoryAtDocument:SBM_INSTANCE_DIR_NAME]];
+    NSString *filePath = [[self createDirectoryAtDocument:SBM_INSTANCE_DIR_NAME] stringByAppendingPathComponent:name];
+    id instance = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
     return instance;
 }
 
@@ -79,12 +82,14 @@ static NSString *const SBM_ARRAY_DIR_NAME = @"jm_array";
         BOOL isCoding = [[instance class] conformsToProtocol:@protocol(NSCoding)];
         if (!isCoding) return NO;
     }
-    BOOL result = [NSKeyedArchiver archiveRootObject:array toFile:[self createDirectoryAtDocument:SBM_ARRAY_DIR_NAME]];
+    NSString *filePath = [[self createDirectoryAtDocument:SBM_ARRAY_DIR_NAME] stringByAppendingPathComponent:name];
+    BOOL result = [NSKeyedArchiver archiveRootObject:array toFile:filePath];
     return result;
 }
 
 + (NSArray *)getArrayWithName:(NSString *)name {
-    NSArray *array = [NSKeyedUnarchiver unarchiveObjectWithFile:[self createDirectoryAtDocument:SBM_ARRAY_DIR_NAME]];
+    NSString *filePath = [[self createDirectoryAtDocument:SBM_ARRAY_DIR_NAME] stringByAppendingPathComponent:name];
+    NSArray *array = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
     return array;
 }
 

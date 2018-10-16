@@ -32,6 +32,7 @@ static const CGFloat alpha = 0.9f;
         progressHUD.label.textColor = [JMCommon sharedCommon].hudTextColor ? [JMCommon sharedCommon].hudTextColor : HUD_TEXTCOLOR;
         progressHUD.label.text = message;
     }
+    progressHUD.contentColor = [JMCommon sharedCommon].hudTextColor ? [JMCommon sharedCommon].hudTextColor : HUD_TEXTCOLOR;
     progressHUD.label.font = [UIFont systemFontOfSize:13];
     progressHUD.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
     progressHUD.bezelView.backgroundColor = [JMCommon sharedCommon].hudBackgroundColor ? [JMCommon sharedCommon].hudBackgroundColor : HUD_BEZELVIEWCOLOR;
@@ -50,6 +51,7 @@ static const CGFloat alpha = 0.9f;
     progressHUD.label.text = message;
     progressHUD.label.font = [UIFont systemFontOfSize:13];
     progressHUD.label.textColor = [JMCommon sharedCommon].hudTextColor ? [JMCommon sharedCommon].hudTextColor : HUD_TEXTCOLOR;
+     progressHUD.contentColor = [JMCommon sharedCommon].hudTextColor ? [JMCommon sharedCommon].hudTextColor : HUD_TEXTCOLOR;
     progressHUD.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
     progressHUD.bezelView.backgroundColor = [JMCommon sharedCommon].hudBackgroundColor ? [JMCommon sharedCommon].hudBackgroundColor : HUD_BEZELVIEWCOLOR;
     progressHUD.alpha = alpha;
@@ -71,11 +73,8 @@ static const CGFloat alpha = 0.9f;
     MBProgressHUD *progressHUD = [MBProgressHUD showHUDAddedTo:view animated:YES];
     progressHUD.mode = MBProgressHUDModeIndeterminate;
 
-    [UIActivityIndicatorView appearanceWhenContainedInInstancesOfClasses:@[[MBProgressHUD class]]].color = [JMCommon sharedCommon].hudTextColor ? [JMCommon sharedCommon].hudTextColor : HUD_TEXTCOLOR;
-//    progressHUD.activityIndicatorColor = [JMCommon sharedCommon].hudTextColor ? [JMCommon sharedCommon].hudTextColor : HUD_TEXTCOLOR;
-//    [UIActivityIndicatorView appearanceWhenContainedIn:[MBProgressHUD class], nil].color = [JMCommon sharedCommon].hudTextColor ? [JMCommon sharedCommon].hudTextColor : HUD_TEXTCOLOR;;
+    progressHUD.contentColor = [JMCommon sharedCommon].hudTextColor ? [JMCommon sharedCommon].hudTextColor : HUD_TEXTCOLOR;
     progressHUD.label.text = message;
-    progressHUD.label.textColor = [JMCommon sharedCommon].hudTextColor ? [JMCommon sharedCommon].hudTextColor : HUD_TEXTCOLOR;;
     progressHUD.label.font = [UIFont systemFontOfSize:13];
     progressHUD.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
     progressHUD.bezelView.backgroundColor = [JMCommon sharedCommon].hudBackgroundColor ? [JMCommon sharedCommon].hudBackgroundColor : HUD_BEZELVIEWCOLOR;
@@ -98,13 +97,13 @@ static const CGFloat alpha = 0.9f;
     progressHUD.mode = MBProgressHUDModeAnnularDeterminate;
     progressHUD.label.text = message;
     progressHUD.label.font = [UIFont systemFontOfSize:13];
-    progressHUD.label.textColor = [JMCommon sharedCommon].hudTextColor ? [JMCommon sharedCommon].hudTextColor : HUD_TEXTCOLOR;
     progressHUD.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
     progressHUD.bezelView.backgroundColor = [JMCommon sharedCommon].hudBackgroundColor ? [JMCommon sharedCommon].hudBackgroundColor : HUD_BEZELVIEWCOLOR;
+    progressHUD.contentColor = [JMCommon sharedCommon].hudTextColor ? [JMCommon sharedCommon].hudTextColor : HUD_TEXTCOLOR;
     progressHUD.alpha = alpha;
     progressHUD.removeFromSuperViewOnHide = YES;//隐藏后从父视图移除
     progressHUD.animationType = MBProgressHUDAnimationFade;//动画类型
-    // 关闭绘制的"性能开关",如果alpha不为1,最好将opaque设为NO,让绘图系统优化性能
+//     关闭绘制的"性能开关",如果alpha不为1,最好将opaque设为NO,让绘图系统优化性能
     progressHUD.opaque = NO;
     return progressHUD;
 }
