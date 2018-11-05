@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TJMBaseTool'
-  s.version          = '0.0.10'
+  s.version          = '0.0.11'
   s.summary          = '自己用的基础模块'
 
 # This description is used to generate tags and improve search results.
@@ -47,11 +47,6 @@ Pod::Spec.new do |s|
       ss.source_files = 'TJMBaseTool/Classes/Common/*.{h,m}'
   end
   
-  s.subspec 'Encryption' do |ss|
-      ss.public_header_files = 'TJMBaseTool/Classes/Encryption/*.h'
-      ss.source_files = 'TJMBaseTool/Classes/Encryption/*.{h,m}'
-  end
-  
   s.subspec 'JMCategory' do |ss|
       ss.dependency 'TJMBaseTool/Common'
       ss.public_header_files = 'TJMBaseTool/Classes/JMCategory/*.h'
@@ -65,7 +60,6 @@ Pod::Spec.new do |s|
   s.subspec 'NetworkManager' do |ss|
       ss.dependency 'TJMBaseTool/Common'
       ss.dependency 'TJMBaseTool/JMCategory'
-      ss.dependency 'TJMBaseTool/Encryption'
       ss.public_header_files = 'TJMBaseTool/Classes/NetworkManager/*.h'
       ss.source_files = 'TJMBaseTool/Classes/NetworkManager/*.{h,m}'
   end

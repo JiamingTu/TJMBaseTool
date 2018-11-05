@@ -56,6 +56,6 @@
 + (void)cancelAll;
 
 /**sign*/
-+ (NSDictionary *)signWithDictionary:(NSDictionary *)dictionary needTimestamp:(BOOL)isNeed;
+//+ (NSDictionary *)signWithDictionary:(NSDictionary *)dictionary needTimestamp:(BOOL)isNeed;
 
 @end

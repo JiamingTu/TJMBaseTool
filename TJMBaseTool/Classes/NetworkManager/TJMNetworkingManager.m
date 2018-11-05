@@ -10,11 +10,10 @@
 #import "JMDefine.h"
 #import "JMCommon.h"
 #import "AFNetworking.h"
-#import "NSString+MD5.h"
 #define TJMResponseMessage  responseObject[@"msg"]
-#define JMTimestamp         [NSString stringWithFormat:@"%ld",time(NULL)*1000]
+//#define JMTimestamp         [NSString stringWithFormat:@"%ld",time(NULL)*1000]
 // 秘钥
-#define TJMSecretKey @"81bd443e4f5ad60bed6e00d42d8babfd"
+//#define TJMSecretKey @"81bd443e4f5ad60bed6e00d42d8babfd"
 
 @implementation TJMNetworkingManager
 
@@ -26,7 +25,7 @@
         AFJSONResponseSerializer *jsonResponseSerializer = [AFJSONResponseSerializer serializer];
         httpManager.responseSerializer = jsonResponseSerializer;
         httpManager.requestSerializer = [AFHTTPRequestSerializer serializer];
-        httpManager.requestSerializer.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[@"PUT", @"GET"]];
+        httpManager.requestSerializer.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[@"PUT", @"GET", @"DELETE"]];
 //        httpManager.requestSerializer.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[@"GET"]];
         // 设置超时时间
         [httpManager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
@@ -365,7 +364,7 @@
     }
     
 }
-
+/*
 #pragma  mark - sign 处理
 + (NSDictionary *)signWithDictionary:(NSDictionary *)dictionary needTimestamp:(BOOL)isNeed passwordKey:(NSString *)passwordKey {
     //变为可变数组
@@ -409,7 +408,7 @@
     [parameters setObject:signString forKey:@"sign"];
     return parameters;
 }
-
+*/
 
 
 
