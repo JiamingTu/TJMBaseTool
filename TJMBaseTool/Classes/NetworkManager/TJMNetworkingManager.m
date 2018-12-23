@@ -15,6 +15,40 @@
 // 秘钥
 //#define TJMSecretKey @"81bd443e4f5ad60bed6e00d42d8babfd"
 
+@interface JMAFQueryStringPair : NSObject
+@property (readwrite, nonatomic, strong) id field;
+@property (readwrite, nonatomic, strong) id value;
+
+- (instancetype)initWithField:(id)field value:(id)value;
+
+- (NSString *)URLEncodedStringValue;
+@end
+
+@implementation JMAFQueryStringPair
+
+- (instancetype)initWithField:(id)field value:(id)value {
+    self = [super init];
+    if (!self) {
+        return nil;
+    }
+    
+    self.field = field;
+    self.value = value;
+    
+    return self;
+}
+
+- (NSString *)jm_URLEncodedStringValue {
+    if (!self.value || [self.value isEqual:[NSNull null]]) {
+        return AFPercentEscapedStringFromString([self.field description]);
+    } else {
+        return [NSString stringWithFormat:@"%@=%@", AFPercentEscapedStringFromString([self.field description]), AFPercentEscapedStringFromString([self.value description])];
+    }
+}
+
+@end
+
+
 @implementation TJMNetworkingManager
 
 + (AFHTTPSessionManager *)shareHttpManager {
@@ -26,7 +60,9 @@
         httpManager.responseSerializer = jsonResponseSerializer;
         httpManager.requestSerializer = [AFHTTPRequestSerializer serializer];
         httpManager.requestSerializer.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[@"PUT", @"GET", @"DELETE"]];
-//        httpManager.requestSerializer.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[@"GET"]];
+        [self jm_httpManagerSetQueryStringSerializationWithBlock:^NSString *(NSURLRequest *request, id parameters, NSError *__autoreleasing *error) {
+            return JM_AFQueryStringFromParameters(parameters);
+        }];
         // 设置超时时间
         [httpManager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
         httpManager.requestSerializer.timeoutInterval = 6.0f;
@@ -34,6 +70,56 @@
     });
     return httpManager;
 }
+
++ (void)jm_httpManagerSetQueryStringSerializationWithBlock:(nullable NSString * (^)(NSURLRequest *request, id parameters, NSError * __autoreleasing *error))block {
+    [[self shareHttpManager].requestSerializer setQueryStringSerializationWithBlock:block];
+    //    return JM_AFQueryStringFromParameters(parameters);
+}
+
+NSString * JM_AFQueryStringFromParameters(NSDictionary *parameters) {
+    NSMutableArray *mutablePairs = [NSMutableArray array];
+    for (JMAFQueryStringPair *pair in JM_AFQueryStringPairsFromDictionary(parameters)) {
+        [mutablePairs addObject:[pair jm_URLEncodedStringValue]];
+    }
+    
+    return [mutablePairs componentsJoinedByString:@"&"];
+}
+
+NSArray * JM_AFQueryStringPairsFromDictionary(NSDictionary *dictionary) {
+    return JM_AFQueryStringPairsFromKeyAndValue(nil, dictionary);
+}
+
+NSArray * JM_AFQueryStringPairsFromKeyAndValue(NSString *key, id value) {
+    NSMutableArray *mutableQueryStringComponents = [NSMutableArray array];
+    
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"description" ascending:YES selector:@selector(compare:)];
+    
+    if ([value isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *dictionary = value;
+        // Sort dictionary keys to ensure consistent ordering in query string, which is important when deserializing potentially ambiguous sequences, such as an array of dictionaries
+        for (id nestedKey in [dictionary.allKeys sortedArrayUsingDescriptors:@[ sortDescriptor ]]) {
+            id nestedValue = dictionary[nestedKey];
+            if (nestedValue) {
+                [mutableQueryStringComponents addObjectsFromArray:JM_AFQueryStringPairsFromKeyAndValue((key ? [NSString stringWithFormat:@"%@[%@]", key, nestedKey] : nestedKey), nestedValue)];
+            }
+        }
+    } else if ([value isKindOfClass:[NSArray class]]) {
+        NSArray *array = value;
+        for (id nestedValue in array) {
+            [mutableQueryStringComponents addObjectsFromArray:JM_AFQueryStringPairsFromKeyAndValue([NSString stringWithFormat:@"%@", key], nestedValue)];
+        }
+    } else if ([value isKindOfClass:[NSSet class]]) {
+        NSSet *set = value;
+        for (id obj in [set sortedArrayUsingDescriptors:@[ sortDescriptor ]]) {
+            [mutableQueryStringComponents addObjectsFromArray:JM_AFQueryStringPairsFromKeyAndValue(key, obj)];
+        }
+    } else {
+        [mutableQueryStringComponents addObject:[[JMAFQueryStringPair alloc] initWithField:key value:value]];
+    }
+    
+    return mutableQueryStringComponents;
+}
+
 + (AFHTTPSessionManager *)shareJsonManager {
     static AFHTTPSessionManager *jsonManager = nil;
     static dispatch_once_t onceToken;
@@ -365,50 +451,50 @@
     
 }
 /*
-#pragma  mark - sign 处理
-+ (NSDictionary *)signWithDictionary:(NSDictionary *)dictionary needTimestamp:(BOOL)isNeed passwordKey:(NSString *)passwordKey {
-    //变为可变数组
-    NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:dictionary];
-    //加入时间戳
-    if (isNeed) {
-        
-        [parameters setObject:JMTimestamp forKey:@"timestamp"];
-    }
-    //MD5 加密
-    NSString *pswd = parameters[passwordKey];
-    if (![JMStringIsEmpty(pswd) isEqualToString:@""]) {
-        pswd = [pswd MD5];
-        parameters[passwordKey] = pswd;
-    }
-    //升序得到 健值对应的两个数组
-    NSArray *allKeyArray = [parameters allKeys];
-    NSArray *afterSortKeyArray = [allKeyArray sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-        NSComparisonResult resuest = [obj1 compare:obj2];
-        return resuest;
-    }];
-    //通过排列的key值获取value
-    NSMutableArray *valueArray = [NSMutableArray array];
-    for (NSString *sortsing in afterSortKeyArray) {
-        NSString *valueString = [parameters objectForKey:sortsing];
-        [valueArray addObject:valueString];
-    }
-    //健值合并
-    NSMutableArray *signArray = [NSMutableArray array];
-    for (int i = 0 ; i < afterSortKeyArray.count; i++) {
-        NSString *keyValue = [NSString stringWithFormat:@"%@%@",afterSortKeyArray[i],valueArray[i]];
-        [signArray addObject:keyValue];
-    }
-    //signString用于签名的原始参数集合
-    NSString *signString = [signArray componentsJoinedByString:@""];
-    //秘钥拼接
-    signString = [NSString stringWithFormat:@"%@%@%@",TJMSecretKey,signString,TJMSecretKey];
-    //MD5加密
-    signString = [signString MD5];
-    //添加健值  sign
-    [parameters setObject:signString forKey:@"sign"];
-    return parameters;
-}
-*/
+ #pragma  mark - sign 处理
+ + (NSDictionary *)signWithDictionary:(NSDictionary *)dictionary needTimestamp:(BOOL)isNeed passwordKey:(NSString *)passwordKey {
+ //变为可变数组
+ NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:dictionary];
+ //加入时间戳
+ if (isNeed) {
+ 
+ [parameters setObject:JMTimestamp forKey:@"timestamp"];
+ }
+ //MD5 加密
+ NSString *pswd = parameters[passwordKey];
+ if (![JMStringIsEmpty(pswd) isEqualToString:@""]) {
+ pswd = [pswd MD5];
+ parameters[passwordKey] = pswd;
+ }
+ //升序得到 健值对应的两个数组
+ NSArray *allKeyArray = [parameters allKeys];
+ NSArray *afterSortKeyArray = [allKeyArray sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+ NSComparisonResult resuest = [obj1 compare:obj2];
+ return resuest;
+ }];
+ //通过排列的key值获取value
+ NSMutableArray *valueArray = [NSMutableArray array];
+ for (NSString *sortsing in afterSortKeyArray) {
+ NSString *valueString = [parameters objectForKey:sortsing];
+ [valueArray addObject:valueString];
+ }
+ //健值合并
+ NSMutableArray *signArray = [NSMutableArray array];
+ for (int i = 0 ; i < afterSortKeyArray.count; i++) {
+ NSString *keyValue = [NSString stringWithFormat:@"%@%@",afterSortKeyArray[i],valueArray[i]];
+ [signArray addObject:keyValue];
+ }
+ //signString用于签名的原始参数集合
+ NSString *signString = [signArray componentsJoinedByString:@""];
+ //秘钥拼接
+ signString = [NSString stringWithFormat:@"%@%@%@",TJMSecretKey,signString,TJMSecretKey];
+ //MD5加密
+ signString = [signString MD5];
+ //添加健值  sign
+ [parameters setObject:signString forKey:@"sign"];
+ return parameters;
+ }
+ */
 
 
 
