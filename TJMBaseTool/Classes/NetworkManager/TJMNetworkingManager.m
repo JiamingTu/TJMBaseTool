@@ -50,11 +50,9 @@
 
 
 @implementation TJMNetworkingManager
-
+static AFHTTPSessionManager *httpManager = nil;
 + (AFHTTPSessionManager *)shareHttpManager {
-    static AFHTTPSessionManager *httpManager = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
+    if (!httpManager) {
         httpManager = [AFHTTPSessionManager manager];
         AFJSONResponseSerializer *jsonResponseSerializer = [AFJSONResponseSerializer serializer];
         httpManager.responseSerializer = jsonResponseSerializer;
@@ -67,12 +65,12 @@
         [httpManager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
         httpManager.requestSerializer.timeoutInterval = 6.0f;
         [httpManager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
-    });
+    }
     return httpManager;
 }
 
 + (void)jm_httpManagerSetQueryStringSerializationWithBlock:(nullable NSString * (^)(NSURLRequest *request, id parameters, NSError * __autoreleasing *error))block {
-    [[self shareHttpManager].requestSerializer setQueryStringSerializationWithBlock:block];
+    [httpManager.requestSerializer setQueryStringSerializationWithBlock:block];
     //    return JM_AFQueryStringFromParameters(parameters);
 }
 
