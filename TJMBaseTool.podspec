@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TJMBaseTool'
-  s.version          = '0.0.15'
+  s.version          = '0.0.16'
   s.summary          = '自己用的基础模块'
 
 # This description is used to generate tags and improve search results.
@@ -51,10 +51,6 @@ Pod::Spec.new do |s|
       ss.dependency 'TJMBaseTool/Common'
       ss.public_header_files = 'TJMBaseTool/Classes/JMCategory/*.h'
       ss.source_files = 'TJMBaseTool/Classes/JMCategory/*.{h,m}'
-      ss.subspec 'NaviAlpha' do |sss|
-          sss.public_header_files = 'TJMBaseTool/Classes/JMCategory/NaviAlpha/*.h'
-          sss.source_files = 'TJMBaseTool/Classes/JMCategory/NaviAlpha/*.{h,m}'
-      end
   end
   
   s.subspec 'NetworkManager' do |ss|
