@@ -23,15 +23,12 @@
 }
 
 - (void)tjm_setBackgroundColor:(UIColor *)backgroundColor {
-    if (!self.overlay) {
+    UIView *backgroundView = [self tjm_getBackgroundView];
+    if (!self.overlay && backgroundView) {
         [self setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-        
-        UIView *backgroundView = [self tjm_getBackgroundView];
-        
         self.overlay = [[UIView alloc] initWithFrame:backgroundView.bounds];
         self.overlay.userInteractionEnabled = NO;
         self.overlay.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-
         [backgroundView insertSubview:self.overlay atIndex:0];
     }
     self.overlay.backgroundColor = backgroundColor;

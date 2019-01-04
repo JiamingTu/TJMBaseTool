@@ -57,6 +57,8 @@ static AFHTTPSessionManager *httpManager = nil;
         AFJSONResponseSerializer *jsonResponseSerializer = [AFJSONResponseSerializer serializer];
         httpManager.responseSerializer = jsonResponseSerializer;
         httpManager.requestSerializer = [AFHTTPRequestSerializer serializer];
+        [httpManager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+        [httpManager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
         httpManager.requestSerializer.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[@"PUT", @"GET", @"DELETE"]];
         [self jm_httpManagerSetQueryStringSerializationWithBlock:^NSString *(NSURLRequest *request, id parameters, NSError *__autoreleasing *error) {
             return JM_AFQueryStringFromParameters(parameters);
@@ -126,6 +128,8 @@ NSArray * JM_AFQueryStringPairsFromKeyAndValue(NSString *key, id value) {
         AFJSONResponseSerializer *jsonResponseSerializer = [AFJSONResponseSerializer serializer];
         jsonManager.responseSerializer = jsonResponseSerializer;
         jsonManager.requestSerializer = [AFJSONRequestSerializer serializer];
+        [jsonManager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+        [jsonManager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
         // 设置超时时间
         [jsonManager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
         jsonManager.requestSerializer.timeoutInterval = 6.0f;
