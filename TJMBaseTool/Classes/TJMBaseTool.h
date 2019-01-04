@@ -23,7 +23,6 @@
 #import "UIView+Beautify.h"
 #import "UIViewController+Config.h"
 #import "WKWebView+Save.h"
-#import "UIViewController+Cloudox.h"
 
 #import "JMSandBoxManager.h"
 #import "TJMHUDHandle.h"
