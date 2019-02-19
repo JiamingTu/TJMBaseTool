@@ -83,7 +83,10 @@ static const CGFloat alpha = 0.9f;
     progressHUD.animationType = MBProgressHUDAnimationFade;//动画类型
     // 关闭绘制的"性能开关",如果alpha不为1,最好将opaque设为NO,让绘图系统优化性能
     progressHUD.opaque = NO;
-//    [progressHUD hideAnimated:YES afterDelay:2];
+    // 设置超时隐藏
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(20 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [progressHUD hideAnimated:YES];
+    });
     return progressHUD;
 }
 
@@ -105,6 +108,10 @@ static const CGFloat alpha = 0.9f;
     progressHUD.animationType = MBProgressHUDAnimationFade;//动画类型
 //     关闭绘制的"性能开关",如果alpha不为1,最好将opaque设为NO,让绘图系统优化性能
     progressHUD.opaque = NO;
+    // 设置超时隐藏
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(20 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [progressHUD hideAnimated:YES];
+    });
     return progressHUD;
 }
 

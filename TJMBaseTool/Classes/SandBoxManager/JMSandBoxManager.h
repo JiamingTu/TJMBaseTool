@@ -160,5 +160,14 @@
  @param AppleId AppleId
  @param alert block
  */
-- (void)checkVersionRequestWithAppleId:(NSString *)AppleId alert:(void(^)(NSString *newVersion))alert;
++ (void)checkVersionRequestFromAppStroreWithAppleId:(NSString *)AppleId alert:(void(^)(NSString *newVersion))alert;
+
+/**
+ 给一个新版本号判断与当前版本相比是否需要z更新
+
+ @param newVersion 新版本号
+ @param alert alert block
+ */
++ (void)checkWithNewVersion:(NSString *)newVersion alert:(void(^)(NSString *newVersion))alert;
+
 @end

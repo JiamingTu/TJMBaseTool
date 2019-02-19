@@ -10,11 +10,18 @@
 static NSString *const SBM_INSTANCE_DIR_NAME = @"jm_instance";
 static NSString *const SBM_ARRAY_DIR_NAME = @"jm_array";
 
+// 日志输出
+#ifdef DEBUG // 开发阶段-DEBUG阶段:使用Log
+#define SBMLog(...) NSLog(__VA_ARGS__)
+#else // 发布阶段-上线阶段:移除Log
+#define SBMLog(...)
+#endif
+
 @implementation JMSandBoxManager
 
 #pragma  mark - base
 + (NSString *)getDocumentDirecrory {
-    NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory,NSUserDomainMask, YES);
+    NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
     NSString *documentDirecrory = [paths objectAtIndex:0];
     return documentDirecrory;
 }
@@ -43,7 +50,7 @@ static NSString *const SBM_ARRAY_DIR_NAME = @"jm_array";
     BOOL isCoding = [[instance class] conformsToProtocol:@protocol(NSCoding)];
     if (isCoding) {
         NSString *filePath = [[self createDirectoryAtDocument:SBM_INSTANCE_DIR_NAME] stringByAppendingPathComponent:name];
-        JMLog(@"%@", filePath);
+        SBMLog(@"%@", filePath);
         BOOL result = [NSKeyedArchiver archiveRootObject:instance toFile: filePath];
         return result;
     }
@@ -66,11 +73,11 @@ static NSString *const SBM_ARRAY_DIR_NAME = @"jm_array";
         if (result) {
             return YES;
         } else {
-            JMLog(@"instance delete fail，%@",error);
+            SBMLog(@"instance delete fail，%@",error);
             return NO;
         }
     } else {
-        JMLog(@"instance dir not exist");
+        SBMLog(@"instance dir not exist");
         return NO;
     }
 }
@@ -103,11 +110,11 @@ static NSString *const SBM_ARRAY_DIR_NAME = @"jm_array";
         if (result) {
             return YES;
         } else {
-            JMLog(@"array delete fail，%@",error);
+            SBMLog(@"array delete fail，%@",error);
             return NO;
         }
     } else {
-        JMLog(@"array dir not exist");
+        SBMLog(@"array dir not exist");
         return NO;
     }
 }
@@ -253,27 +260,53 @@ static NSString *const SBM_ARRAY_DIR_NAME = @"jm_array";
 
 #pragma  mark - software version
 #pragma  mark - 版本确认
-- (void)checkVersionRequestWithAppleId:(NSString *)AppleId alert:(void(^)(NSString *newVersion))alert  {
-        NSString *url = @"http://itunes.apple.com/cn/lookup";
++ (void)checkVersionRequestFromAppStroreWithAppleId:(NSString *)AppleId alert:(void(^)(NSString *newVersion))alert  {
+        NSString *urlStr = @"http://itunes.apple.com/cn/lookup";
 //    NSString *url = @"http://itunes.apple.com/lookup";
-    NSDictionary *parameters = @{@"id":AppleId};
-    [[AFHTTPSessionManager manager] GET:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if (responseObject) {
-            NSArray *array = responseObject[@"results"];
-            if (array.count != 0) {// 先判断返回的数据是否为空
-                NSDictionary *dict = array[0];
-                NSString *version = dict[@"version"];
-                if (version) {
-                    [self checkWithNewVersion:version alert:alert];
+    
+    NSString *queryUrlStr = [NSString stringWithFormat:@"%@?id=%@", urlStr, AppleId];
+    NSURL *url = [NSURL URLWithString:queryUrlStr];
+    
+    //2.获得会话对象
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    //3.根据会话对象创建一个Task(发送请求）
+    /*
+     第一个参数：请求路径
+     第二个参数：completionHandler回调（请求完成【成功|失败】的回调）
+     data：响应体信息（期望的数据）
+     response：响应头信息，主要是对服务器端的描述
+     error：错误信息，如果请求失败，则error有值
+     注意：
+     1）该方法内部会自动将请求路径包装成一个请求对象，该请求对象默认包含了请求头信息和请求方法（GET）
+     2）如果要发送的是POST请求，则不能使用该方法
+     */
+    NSURLSessionDataTask *dataTask = [session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        if (error) {
+            SBMLog(@"get version from apple.com fail : %@", error.localizedDescription);
+        } else {
+            //5.解析数据
+            NSDictionary *responseObject = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+            SBMLog(@"%@",responseObject);
+            if (responseObject) {
+                NSArray *array = responseObject[@"results"];
+                if (array.count != 0) {// 先判断返回的数据是否为空
+                    NSDictionary *dict = array[0];
+                    NSString *version = dict[@"version"];
+                    if (version) {
+                        [self checkWithNewVersion:version alert:alert];
+                    }
                 }
             }
         }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        JMLog(@"get version from apple.com fail : %@", error.localizedDescription);
     }];
+    
+    //4.执行任务
+    [dataTask resume];
 }
 
-- (void)checkWithNewVersion:(NSString *)newVersion alert:(void(^)(NSString *newVersion))alert {
++ (void)checkWithNewVersion:(NSString *)newVersion alert:(void(^)(NSString *newVersion))alert {
     //判断此版本是否为忽略更新版本
     NSString *ignoreVersion = [[NSUserDefaults standardUserDefaults] objectForKey:kIgnoreVersion];
     if (ignoreVersion) {
@@ -290,7 +323,7 @@ static NSString *const SBM_ARRAY_DIR_NAME = @"jm_array";
 }
 
 //判断当前app版本和AppStore最新app版本大小
-- (BOOL)judgeNewVersion:(NSString *)newVersion withOldVersion:(NSString *)oldVersion {
++ (BOOL)judgeNewVersion:(NSString *)newVersion withOldVersion:(NSString *)oldVersion {
     NSArray *newArray = [newVersion componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"."]];
     NSArray *oldArray = [oldVersion componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"."]];
     for (NSInteger i = 0; i < newArray.count; i ++) {
