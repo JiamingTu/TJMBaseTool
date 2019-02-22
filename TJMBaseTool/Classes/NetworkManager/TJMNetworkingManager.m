@@ -59,7 +59,7 @@ static AFHTTPSessionManager *httpManager = nil;
         httpManager.requestSerializer = [AFHTTPRequestSerializer serializer];
         [httpManager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
         [httpManager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        httpManager.requestSerializer.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[@"PUT", @"GET", @"DELETE"]];
+        httpManager.requestSerializer.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[@"PUT", @"GET", @"DELETE", @"POST"]];
         [self jm_httpManagerSetQueryStringSerializationWithBlock:^NSString *(NSURLRequest *request, id parameters, NSError *__autoreleasing *error) {
             return JM_AFQueryStringFromParameters(parameters);
         }];
