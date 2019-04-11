@@ -12,21 +12,6 @@ typedef void(^JMLogoutBlock)(void);
 @interface JMCommon : NSObject
 
 SingletonH(Common)
-///net work
-
-/**
- 登出block
- */
-@property (nonatomic, copy) JMLogoutBlock logout;
-
-/**
- token 网络请求需要使用（必须）
- */
-@property (nonatomic, copy) NSString *token;
-
-@property (nonatomic, strong) UIColor *hudBackgroundColor;
-
-@property (nonatomic, strong) UIColor *hudTextColor;
 
 /**
  返回按钮图片name

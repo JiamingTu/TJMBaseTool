@@ -1,6 +1,6 @@
 {
   "name": "TJMBaseTool",
-  "version": "0.0.4",
+  "version": "0.0.18",
   "summary": "自己用的基础模块",
   "description": "自己用的基础模块，包括AFN封装，等",
   "homepage": "https://github.com/JiamingTu/TJMBaseTool",
@@ -13,19 +13,11 @@
   },
   "source": {
     "git": "https://github.com/JiamingTu/TJMBaseTool.git",
-    "tag": "0.0.4"
+    "tag": "0.0.18"
   },
   "platforms": {
     "ios": "9.0"
   },
-  "public_header_files": [
-    "TJMBaseTool/Classes/TJMBaseTool.h",
-    "TJMBaseTool/Classes/**/*.h"
-  ],
-  "source_files": [
-    "TJMBaseTool/Classes/**/*",
-    "TJMBaseTool/Classes/*"
-  ],
   "frameworks": "UIKit",
   "dependencies": {
     "AFNetworking": [
@@ -35,16 +27,12 @@
 
     ]
   },
+  "source_files": "TJMBaseTool/Classes/TJMBaseTool.h",
   "subspecs": [
     {
       "name": "Common",
       "public_header_files": "TJMBaseTool/Classes/Common/*.h",
       "source_files": "TJMBaseTool/Classes/Common/*.{h,m}"
-    },
-    {
-      "name": "Encryption",
-      "public_header_files": "TJMBaseTool/Classes/Encryption/*.h",
-      "source_files": "TJMBaseTool/Classes/Encryption/*.{h,m}"
     },
     {
       "name": "JMCategory",
@@ -64,9 +52,6 @@
         ],
         "TJMBaseTool/JMCategory": [
 
-        ],
-        "TJMBaseTool/Encryption": [
-
         ]
       },
       "public_header_files": "TJMBaseTool/Classes/NetworkManager/*.h",
@@ -84,6 +69,19 @@
       },
       "public_header_files": "TJMBaseTool/Classes/HUDManager/*.h",
       "source_files": "TJMBaseTool/Classes/HUDManager/*.{h,m}"
+    },
+    {
+      "name": "SandBoxManager",
+      "dependencies": {
+        "TJMBaseTool/Common": [
+
+        ],
+        "AFNetworking": [
+
+        ]
+      },
+      "public_header_files": "TJMBaseTool/Classes/SandBoxManager/*.h",
+      "source_files": "TJMBaseTool/Classes/SandBoxManager/*.{h,m}"
     }
   ]
 }

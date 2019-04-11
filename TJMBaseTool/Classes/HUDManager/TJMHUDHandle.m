@@ -8,11 +8,7 @@
 
 #import "TJMHUDHandle.h"
 #import "MBProgressHUD.h"
-#import "JMCommon.h"
-#define HUD_BEZELVIEWCOLOR [UIColor colorWithRed:34/255.0 green:34/255.0 blue:34/255.0 alpha:1.0]
-#define HUD_TEXTCOLOR [UIColor whiteColor]
-
-static const CGFloat alpha = 0.9f;
+#import "JMHUDConfig.h"
 
 @interface TJMHUDHandle ()
 
@@ -26,17 +22,17 @@ static const CGFloat alpha = 0.9f;
     MBProgressHUD *progressHUD = [MBProgressHUD showHUDAddedTo:view animated:YES];
     progressHUD.mode = MBProgressHUDModeText;
     if (message.length > 20) {
-        progressHUD.detailsLabel.textColor = [JMCommon sharedCommon].hudTextColor ? [JMCommon sharedCommon].hudTextColor : HUD_TEXTCOLOR;
+        progressHUD.detailsLabel.textColor = [JMHUDConfig shareConfig].hudTextColor;
         progressHUD.detailsLabel.text = message;
     } else {
-        progressHUD.label.textColor = [JMCommon sharedCommon].hudTextColor ? [JMCommon sharedCommon].hudTextColor : HUD_TEXTCOLOR;
+        progressHUD.label.textColor = [JMHUDConfig shareConfig].hudTextColor;
         progressHUD.label.text = message;
     }
-    progressHUD.contentColor = [JMCommon sharedCommon].hudTextColor ? [JMCommon sharedCommon].hudTextColor : HUD_TEXTCOLOR;
+    progressHUD.contentColor = [JMHUDConfig shareConfig].hudTextColor;
     progressHUD.label.font = [UIFont systemFontOfSize:13];
     progressHUD.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
-    progressHUD.bezelView.backgroundColor = [JMCommon sharedCommon].hudBackgroundColor ? [JMCommon sharedCommon].hudBackgroundColor : HUD_BEZELVIEWCOLOR;
-    progressHUD.alpha = alpha;
+    progressHUD.bezelView.backgroundColor = [JMHUDConfig shareConfig].hudBackgroundColor;
+    progressHUD.alpha = JM_HUD_CONFIG.alpha;
     progressHUD.removeFromSuperViewOnHide = YES;//隐藏后从父视图移除
     progressHUD.animationType = MBProgressHUDAnimationFade;//动画类型
     // 关闭绘制的"性能开关",如果alpha不为1,最好将opaque设为NO,让绘图系统优化性能
@@ -50,11 +46,11 @@ static const CGFloat alpha = 0.9f;
     progressHUD.mode = MBProgressHUDModeText;
     progressHUD.label.text = message;
     progressHUD.label.font = [UIFont systemFontOfSize:13];
-    progressHUD.label.textColor = [JMCommon sharedCommon].hudTextColor ? [JMCommon sharedCommon].hudTextColor : HUD_TEXTCOLOR;
-     progressHUD.contentColor = [JMCommon sharedCommon].hudTextColor ? [JMCommon sharedCommon].hudTextColor : HUD_TEXTCOLOR;
+    progressHUD.label.textColor = [JMHUDConfig shareConfig].hudTextColor;
+    progressHUD.contentColor = [JMHUDConfig shareConfig].hudTextColor;
     progressHUD.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
-    progressHUD.bezelView.backgroundColor = [JMCommon sharedCommon].hudBackgroundColor ? [JMCommon sharedCommon].hudBackgroundColor : HUD_BEZELVIEWCOLOR;
-    progressHUD.alpha = alpha;
+    progressHUD.bezelView.backgroundColor = [JMHUDConfig shareConfig].hudBackgroundColor;
+    progressHUD.alpha = JM_HUD_CONFIG.alpha;
     progressHUD.removeFromSuperViewOnHide = YES;//隐藏后从父视图移除
     progressHUD.animationType = MBProgressHUDAnimationFade;//动画类型
     // 关闭绘制的"性能开关",如果alpha不为1,最好将opaque设为NO,让绘图系统优化性能
@@ -72,19 +68,18 @@ static const CGFloat alpha = 0.9f;
     [TJMHUDHandle hiddenHUDForView:view];
     MBProgressHUD *progressHUD = [MBProgressHUD showHUDAddedTo:view animated:YES];
     progressHUD.mode = MBProgressHUDModeIndeterminate;
-
-    progressHUD.contentColor = [JMCommon sharedCommon].hudTextColor ? [JMCommon sharedCommon].hudTextColor : HUD_TEXTCOLOR;
+    progressHUD.contentColor = [JMHUDConfig shareConfig].hudTextColor;
     progressHUD.label.text = message;
     progressHUD.label.font = [UIFont systemFontOfSize:13];
     progressHUD.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
-    progressHUD.bezelView.backgroundColor = [JMCommon sharedCommon].hudBackgroundColor ? [JMCommon sharedCommon].hudBackgroundColor : HUD_BEZELVIEWCOLOR;
-    progressHUD.alpha = alpha;
+    progressHUD.bezelView.backgroundColor = [JMHUDConfig shareConfig].hudBackgroundColor;
+    progressHUD.alpha = JM_HUD_CONFIG.alpha;
     progressHUD.removeFromSuperViewOnHide = YES;//隐藏后从父视图移除
     progressHUD.animationType = MBProgressHUDAnimationFade;//动画类型
     // 关闭绘制的"性能开关",如果alpha不为1,最好将opaque设为NO,让绘图系统优化性能
     progressHUD.opaque = NO;
     // 设置超时隐藏
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(20 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)([JMHUDConfig shareConfig].showTimeoutInterval * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [progressHUD hideAnimated:YES];
     });
     return progressHUD;
@@ -101,15 +96,15 @@ static const CGFloat alpha = 0.9f;
     progressHUD.label.text = message;
     progressHUD.label.font = [UIFont systemFontOfSize:13];
     progressHUD.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
-    progressHUD.bezelView.backgroundColor = [JMCommon sharedCommon].hudBackgroundColor ? [JMCommon sharedCommon].hudBackgroundColor : HUD_BEZELVIEWCOLOR;
-    progressHUD.contentColor = [JMCommon sharedCommon].hudTextColor ? [JMCommon sharedCommon].hudTextColor : HUD_TEXTCOLOR;
-    progressHUD.alpha = alpha;
+    progressHUD.bezelView.backgroundColor = [JMHUDConfig shareConfig].hudBackgroundColor;
+    progressHUD.contentColor = [JMHUDConfig shareConfig].hudTextColor ;
+    progressHUD.alpha = JM_HUD_CONFIG.alpha;
     progressHUD.removeFromSuperViewOnHide = YES;//隐藏后从父视图移除
     progressHUD.animationType = MBProgressHUDAnimationFade;//动画类型
 //     关闭绘制的"性能开关",如果alpha不为1,最好将opaque设为NO,让绘图系统优化性能
     progressHUD.opaque = NO;
     // 设置超时隐藏
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(20 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)([JMHUDConfig shareConfig].showTimeoutInterval * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [progressHUD hideAnimated:YES];
     });
     return progressHUD;

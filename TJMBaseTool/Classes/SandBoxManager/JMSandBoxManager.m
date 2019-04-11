@@ -6,7 +6,6 @@
 //
 
 #import "JMSandBoxManager.h"
-#import "AFNetworking.h"
 static NSString *const SBM_INSTANCE_DIR_NAME = @"jm_instance";
 static NSString *const SBM_ARRAY_DIR_NAME = @"jm_array";
 

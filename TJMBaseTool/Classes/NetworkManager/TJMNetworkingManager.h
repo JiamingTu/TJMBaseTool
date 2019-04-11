@@ -7,17 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+
+static NSString *const ntf_JM_Networking_Logout = @"ntf_JM_Networking_Logout";
+
 @interface TJMNetworkingManager : NSObject
-
-
-/**
- 对query 有特殊要求的 写在这个block里 返回处理好的query
- 
- @param block block
- */
-+ (void)jm_httpManagerSetQueryStringSerializationWithBlock:(nullable NSString * (^)(NSURLRequest *request, id parameters, NSError * __autoreleasing *error))block;
-
-NSString * JM_AFQueryStringFromParameters(NSDictionary *parameters);
 
 /**GET*/
 + (void)GET:(NSString *)URLString isNeedToken:(BOOL)isNeedToken parameters:(NSDictionary *)parameters progress:(void(^)(NSProgress *progress))progress success:(void(^)(id successObj,NSString *msg))success failure:(void(^)(NSInteger code, NSString *failString))failure;

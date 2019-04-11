@@ -7,48 +7,25 @@
 //
 
 #import "TJMNetworkingManager.h"
-#import "JMDefine.h"
-#import "JMCommon.h"
 #import "AFNetworking.h"
+#import "JMNetworkingConfig.h"
+
+// 日志输出
+#ifdef DEBUG // 开发阶段-DEBUG阶段:使用Log
+#define JMNLog(...) NSLog(__VA_ARGS__)
+#else // 发布阶段-上线阶段:移除Log
+#define JMNLog(...)
+#endif
+
+//字符串是否空 空 return @“” 非空 return string
+#define JMNStringIsEmpty(string) ([string isEqual:@"NULL"] || [string isKindOfClass:[NSNull class]] || [string isEqual:[NSNull null]] || [string isEqual:NULL] || [[string class] isSubclassOfClass:[NSNull class]] || string == nil || string == NULL || [string isKindOfClass:[NSNull class]] || [[string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length]==0 || [string isEqualToString:@"<null>"] || [string isEqualToString:@"(null)"] ? @"" : string )
+
+
 #define TJMResponseMessage  responseObject[@"msg"]
+
 //#define JMTimestamp         [NSString stringWithFormat:@"%ld",time(NULL)*1000]
 // 秘钥
 //#define TJMSecretKey @"81bd443e4f5ad60bed6e00d42d8babfd"
-
-@interface JMAFQueryStringPair : NSObject
-@property (readwrite, nonatomic, strong) id field;
-@property (readwrite, nonatomic, strong) id value;
-
-- (instancetype)initWithField:(id)field value:(id)value;
-
-- (NSString *)URLEncodedStringValue;
-@end
-
-@implementation JMAFQueryStringPair
-
-- (instancetype)initWithField:(id)field value:(id)value {
-    self = [super init];
-    if (!self) {
-        return nil;
-    }
-    
-    self.field = field;
-    self.value = value;
-    
-    return self;
-}
-
-- (NSString *)jm_URLEncodedStringValue {
-    if (!self.value || [self.value isEqual:[NSNull null]]) {
-        return AFPercentEscapedStringFromString([self.field description]);
-    } else {
-        return [NSString stringWithFormat:@"%@=%@", AFPercentEscapedStringFromString([self.field description]), AFPercentEscapedStringFromString([self.value description])];
-    }
-}
-
-@end
-
-
 @implementation TJMNetworkingManager
 static AFHTTPSessionManager *httpManager = nil;
 + (AFHTTPSessionManager *)shareHttpManager {
@@ -57,67 +34,18 @@ static AFHTTPSessionManager *httpManager = nil;
         AFJSONResponseSerializer *jsonResponseSerializer = [AFJSONResponseSerializer serializer];
         httpManager.responseSerializer = jsonResponseSerializer;
         httpManager.requestSerializer = [AFHTTPRequestSerializer serializer];
-        [httpManager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-        [httpManager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        httpManager.requestSerializer.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[@"PUT", @"GET", @"DELETE", @"POST"]];
-        [self jm_httpManagerSetQueryStringSerializationWithBlock:^NSString *(NSURLRequest *request, id parameters, NSError *__autoreleasing *error) {
+        [httpManager.requestSerializer setValue:JM_NETWORKING_CONFIG.acceptHeaderFiledValue forHTTPHeaderField:@"Accept"];
+        [httpManager.requestSerializer setValue:JM_NETWORKING_CONFIG.contentTypeHeaderFiledValue forHTTPHeaderField:@"Content-Type"];
+        httpManager.requestSerializer.HTTPMethodsEncodingParametersInURI = JM_NETWORKING_CONFIG.httpManagerParamsInUrlSet;
+        [httpManager.requestSerializer setQueryStringSerializationWithBlock:^NSString * _Nonnull(NSURLRequest * _Nonnull request, id  _Nonnull parameters, NSError * _Nullable __autoreleasing * _Nullable error) {
             return JM_AFQueryStringFromParameters(parameters);
         }];
         // 设置超时时间
         [httpManager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
-        httpManager.requestSerializer.timeoutInterval = 6.0f;
+        httpManager.requestSerializer.timeoutInterval = JM_NETWORKING_CONFIG.timeoutInterval;
         [httpManager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
     }
     return httpManager;
-}
-
-+ (void)jm_httpManagerSetQueryStringSerializationWithBlock:(nullable NSString * (^)(NSURLRequest *request, id parameters, NSError * __autoreleasing *error))block {
-    [httpManager.requestSerializer setQueryStringSerializationWithBlock:block];
-    //    return JM_AFQueryStringFromParameters(parameters);
-}
-
-NSString * JM_AFQueryStringFromParameters(NSDictionary *parameters) {
-    NSMutableArray *mutablePairs = [NSMutableArray array];
-    for (JMAFQueryStringPair *pair in JM_AFQueryStringPairsFromDictionary(parameters)) {
-        [mutablePairs addObject:[pair jm_URLEncodedStringValue]];
-    }
-    
-    return [mutablePairs componentsJoinedByString:@"&"];
-}
-
-NSArray * JM_AFQueryStringPairsFromDictionary(NSDictionary *dictionary) {
-    return JM_AFQueryStringPairsFromKeyAndValue(nil, dictionary);
-}
-
-NSArray * JM_AFQueryStringPairsFromKeyAndValue(NSString *key, id value) {
-    NSMutableArray *mutableQueryStringComponents = [NSMutableArray array];
-    
-    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"description" ascending:YES selector:@selector(compare:)];
-    
-    if ([value isKindOfClass:[NSDictionary class]]) {
-        NSDictionary *dictionary = value;
-        // Sort dictionary keys to ensure consistent ordering in query string, which is important when deserializing potentially ambiguous sequences, such as an array of dictionaries
-        for (id nestedKey in [dictionary.allKeys sortedArrayUsingDescriptors:@[ sortDescriptor ]]) {
-            id nestedValue = dictionary[nestedKey];
-            if (nestedValue) {
-                [mutableQueryStringComponents addObjectsFromArray:JM_AFQueryStringPairsFromKeyAndValue((key ? [NSString stringWithFormat:@"%@[%@]", key, nestedKey] : nestedKey), nestedValue)];
-            }
-        }
-    } else if ([value isKindOfClass:[NSArray class]]) {
-        NSArray *array = value;
-        for (id nestedValue in array) {
-            [mutableQueryStringComponents addObjectsFromArray:JM_AFQueryStringPairsFromKeyAndValue([NSString stringWithFormat:@"%@", key], nestedValue)];
-        }
-    } else if ([value isKindOfClass:[NSSet class]]) {
-        NSSet *set = value;
-        for (id obj in [set sortedArrayUsingDescriptors:@[ sortDescriptor ]]) {
-            [mutableQueryStringComponents addObjectsFromArray:JM_AFQueryStringPairsFromKeyAndValue(key, obj)];
-        }
-    } else {
-        [mutableQueryStringComponents addObject:[[JMAFQueryStringPair alloc] initWithField:key value:value]];
-    }
-    
-    return mutableQueryStringComponents;
 }
 
 + (AFHTTPSessionManager *)shareJsonManager {
@@ -128,11 +56,11 @@ NSArray * JM_AFQueryStringPairsFromKeyAndValue(NSString *key, id value) {
         AFJSONResponseSerializer *jsonResponseSerializer = [AFJSONResponseSerializer serializer];
         jsonManager.responseSerializer = jsonResponseSerializer;
         jsonManager.requestSerializer = [AFJSONRequestSerializer serializer];
-        [jsonManager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-        [jsonManager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        [jsonManager.requestSerializer setValue:JM_NETWORKING_CONFIG.acceptHeaderFiledValue forHTTPHeaderField:@"Accept"];
+        [jsonManager.requestSerializer setValue:JM_NETWORKING_CONFIG.contentTypeHeaderFiledValue forHTTPHeaderField:@"Content-Type"];
         // 设置超时时间
         [jsonManager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
-        jsonManager.requestSerializer.timeoutInterval = 6.0f;
+        jsonManager.requestSerializer.timeoutInterval = JM_NETWORKING_CONFIG.timeoutInterval;
         [jsonManager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
     });
     return jsonManager;
@@ -147,7 +75,6 @@ NSArray * JM_AFQueryStringPairsFromKeyAndValue(NSString *key, id value) {
             progress(downloadProgress);
         }
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
         [self requestSuccessWithSessionDataTask:task responseObject:responseObject success:success failure:failure];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self requestFailureWithSessionDataTask:task error:error failure:failure];
@@ -162,7 +89,6 @@ NSArray * JM_AFQueryStringPairsFromKeyAndValue(NSString *key, id value) {
             progress(uploadProgress);
         }
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
         [self requestSuccessWithSessionDataTask:task responseObject:responseObject success:success failure:failure];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
@@ -240,12 +166,11 @@ NSArray * JM_AFQueryStringPairsFromKeyAndValue(NSString *key, id value) {
 
 #pragma  mark - json post 参数 array
 + (void)JsonPOST:(NSString *)URLString isNeedToken:(BOOL)isNeedToken array:(NSArray *)array uploadProgressBlock:(void(^)(NSProgress *progress))uploadProgressBlock success:(void(^)(id successObj,NSString *msg))success failure:(void(^)(NSInteger code, NSString *failString))failure {
-    JMCommon *common = [JMCommon sharedCommon];
-    if (common.token) {
+    if (JM_NETWORKING_CONFIG.token) {
         NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
         AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
         NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:URLString parameters:nil constructingBodyWithBlock:nil error:nil];
-        if (isNeedToken) [request setValue:common.token forHTTPHeaderField:@"Authorization"];
+        if (isNeedToken) [request setValue:JM_NETWORKING_CONFIG.token forHTTPHeaderField:@"Authorization"];
         [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
         NSData *data = [NSJSONSerialization dataWithJSONObject:array options:NSJSONWritingPrettyPrinted error:nil];
         [request setHTTPBody:data];
@@ -256,16 +181,16 @@ NSArray * JM_AFQueryStringPairsFromKeyAndValue(NSString *key, id value) {
             
         } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
             if (!error) {
-                JMLog(@"json post array noerror,\n url : %@,\n responseObject : %@", URLString, responseObject);
+                JMNLog(@"json post array noerror,\n url : %@,\n responseObject : %@", URLString, responseObject);
                 [self requestSuccessWithSessionDataTask:task responseObject:responseObject success:success failure:failure];
             } else {
-                JMLog(@"json post array error,\n url : %@,\n error : %@", URLString, error);
+                JMNLog(@"json post array error,\n url : %@,\n error : %@", URLString, error);
                 [self requestFailureWithSessionDataTask:task error:error failure:failure];
             }
         }];
         [task resume];
     } else {
-        JMLog(@"url : %@, common.token 未设置", URLString);
+        JMNLog(@"url : %@, common.token 未设置", URLString);
     }
 }
 
@@ -280,8 +205,7 @@ NSArray * JM_AFQueryStringPairsFromKeyAndValue(NSString *key, id value) {
 }
 
 + (void)JsonPUT:(NSString *)URLString isNeedToken:(BOOL)isNeedToken data:(NSData *)data parameters:(NSDictionary *)parameters progress:(void(^)(NSProgress *progress))progress success:(void(^)(id successObj,NSString *msg))success failure:(void(^)(NSInteger code, NSString *failString))failure {
-    JMCommon *common = [JMCommon sharedCommon];
-    if (common.token) {
+    if (JM_NETWORKING_CONFIG.token) {
         NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
         AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
         NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] multipartFormRequestWithMethod:@"PUT" URLString:URLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
@@ -290,7 +214,7 @@ NSArray * JM_AFQueryStringPairsFromKeyAndValue(NSString *key, id value) {
             }
         } error:nil];
         if (isNeedToken) {
-            [request setValue:common.token forHTTPHeaderField:@"Authorization"];
+            [request setValue:JM_NETWORKING_CONFIG.token forHTTPHeaderField:@"Authorization"];
         } else {
             [request setValue:nil forHTTPHeaderField:@"Authorization"];
         }
@@ -315,12 +239,11 @@ NSArray * JM_AFQueryStringPairsFromKeyAndValue(NSString *key, id value) {
 }
 
 + (void)JsonPUT:(NSString *)URLString isNeedToken:(BOOL)isNeedToken array:(NSArray *)array uploadProgressBlock:(void(^)(NSProgress *progress))uploadProgressBlock success:(void(^)(id successObj,NSString *msg))success failure:(void(^)(NSInteger code, NSString *failString))failure {
-    JMCommon *common = [JMCommon sharedCommon];
-    if (common.token) {
+    if (JM_NETWORKING_CONFIG.token) {
         NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
         AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
         NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] multipartFormRequestWithMethod:@"PUT" URLString:URLString parameters:nil constructingBodyWithBlock:nil error:nil];
-        if (isNeedToken) [request setValue:common.token forHTTPHeaderField:@"Authorization"];
+        if (isNeedToken) [request setValue:JM_NETWORKING_CONFIG.token forHTTPHeaderField:@"Authorization"];
         [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
         NSData *data = [NSJSONSerialization dataWithJSONObject:array options:NSJSONWritingPrettyPrinted error:nil];
         [request setHTTPBody:data];
@@ -331,16 +254,16 @@ NSArray * JM_AFQueryStringPairsFromKeyAndValue(NSString *key, id value) {
             
         } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
             if (!error) {
-                JMLog(@"json post array noerror,\n url : %@,\n responseObject : %@", URLString, responseObject);
+                JMNLog(@"json post array noerror,\n url : %@,\n responseObject : %@", URLString, responseObject);
                 [self requestSuccessWithSessionDataTask:task responseObject:responseObject success:success failure:failure];
             } else {
-                JMLog(@"json post array error,\n url : %@,\n error : %@", URLString, error);
+                JMNLog(@"json post array error,\n url : %@,\n error : %@", URLString, error);
                 [self requestFailureWithSessionDataTask:task error:error failure:failure];
             }
         }];
         [task resume];
     } else {
-        JMLog(@"url : %@, common.token 未设置", URLString);
+        JMNLog(@"url : %@, common.token 未设置", URLString);
     }
 }
 
@@ -353,9 +276,6 @@ NSArray * JM_AFQueryStringPairsFromKeyAndValue(NSString *key, id value) {
     }];
 }
 
-
-
-
 #pragma  mark - cancel
 + (void)cancelAll {
     [[TJMNetworkingManager shareHttpManager].operationQueue cancelAllOperations];
@@ -366,9 +286,8 @@ NSArray * JM_AFQueryStringPairsFromKeyAndValue(NSString *key, id value) {
 //是否token
 + (void)configAuthorization:(BOOL)isNeed {
     if (isNeed) {
-        JMCommon *common = [JMCommon sharedCommon];
-        [[TJMNetworkingManager shareHttpManager].requestSerializer setValue:common.token forHTTPHeaderField:@"Authorization"];
-        [[TJMNetworkingManager shareJsonManager].requestSerializer setValue:common.token forHTTPHeaderField:@"Authorization"];
+        [[TJMNetworkingManager shareHttpManager].requestSerializer setValue:JM_NETWORKING_CONFIG.token forHTTPHeaderField:@"Authorization"];
+        [[TJMNetworkingManager shareJsonManager].requestSerializer setValue:JM_NETWORKING_CONFIG.token forHTTPHeaderField:@"Authorization"];
     } else {
         [[TJMNetworkingManager shareHttpManager].requestSerializer clearAuthorizationHeader];
         [[TJMNetworkingManager shareJsonManager].requestSerializer clearAuthorizationHeader];
@@ -391,18 +310,15 @@ NSArray * JM_AFQueryStringPairsFromKeyAndValue(NSString *key, id value) {
         if ([responseObject[@"code"] integerValue] == 401 || [responseObject[@"code"] integerValue] == 403) {
             //未授权 授权过期
             if (failure) {
-                failure([responseObject[@"code"] integerValue], JMStringIsEmpty(TJMResponseMessage));
+                failure([responseObject[@"code"] integerValue], JMNStringIsEmpty(TJMResponseMessage));
             }
             //显示 未授权 并 切换到 登录界面
-            if ([JMCommon sharedCommon].logout) {
-                [JMCommon sharedCommon].logout();
-            };
-            
+            [[NSNotificationCenter defaultCenter] postNotificationName:ntf_JM_Networking_Logout object:nil];
         } else {
             //其他情况
             if (failure) {
                 NSString *failString = @"";
-                if ([JMStringIsEmpty(TJMResponseMessage) isEqualToString:@""]) {
+                if ([JMNStringIsEmpty(TJMResponseMessage) isEqualToString:@""]) {
                     failString = @"未知错误，请尝试重新登录";
                 } else {
                     failString = TJMResponseMessage;
@@ -421,10 +337,7 @@ NSArray * JM_AFQueryStringPairsFromKeyAndValue(NSString *key, id value) {
             failure(code, error.localizedDescription);
         }
         //显示 未授权 并 切换到 登录界面
-        if ([JMCommon sharedCommon].logout) {
-            [JMCommon sharedCommon].logout();
-        };
-        
+        [[NSNotificationCenter defaultCenter] postNotificationName:ntf_JM_Networking_Logout object:nil];
     } else if (code == 404) {
         failure(code, @"404 NOT FOUND");
     }
@@ -464,7 +377,7 @@ NSArray * JM_AFQueryStringPairsFromKeyAndValue(NSString *key, id value) {
  }
  //MD5 加密
  NSString *pswd = parameters[passwordKey];
- if (![JMStringIsEmpty(pswd) isEqualToString:@""]) {
+ if (![JMNStringIsEmpty(pswd) isEqualToString:@""]) {
  pswd = [pswd MD5];
  parameters[passwordKey] = pswd;
  }
