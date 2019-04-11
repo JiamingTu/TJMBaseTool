@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (JMNetworkingConfig *)shareConfig;
 
-@property (nonatomic, copy) NSString *token;
+@property (nonatomic, copy, nullable) NSString *token;
 
 @property (nonatomic, assign) NSTimeInterval timeoutInterval;
 
