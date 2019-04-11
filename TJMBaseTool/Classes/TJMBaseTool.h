@@ -20,7 +20,6 @@
 #import "UINavigationBar+BackgroundColor.h"
 #import "UITextField+InputRule.h"
 #import "UITextView+InputRule.h"
-#import "UIView+Beautify.h"
 #import "UIViewController+Config.h"
 #import "WKWebView+Save.h"
 

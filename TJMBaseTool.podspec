@@ -54,15 +54,11 @@ Pod::Spec.new do |s|
   end
   
   s.subspec 'NetworkManager' do |ss|
-      ss.dependency 'TJMBaseTool/Common'
-      ss.dependency 'TJMBaseTool/JMCategory'
       ss.public_header_files = 'TJMBaseTool/Classes/NetworkManager/*.h'
       ss.source_files = 'TJMBaseTool/Classes/NetworkManager/*.{h,m}'
   end
   
   s.subspec 'HUDManager' do |ss|
-      ss.dependency 'TJMBaseTool/Common'
-      ss.dependency 'TJMBaseTool/JMCategory'
       ss.public_header_files = 'TJMBaseTool/Classes/HUDManager/*.h'
       ss.source_files = 'TJMBaseTool/Classes/HUDManager/*.{h,m}'
   end
