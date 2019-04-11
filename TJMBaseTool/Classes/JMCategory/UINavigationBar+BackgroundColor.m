@@ -9,7 +9,6 @@
 #import "UINavigationBar+BackgroundColor.h"
 #import <objc/runtime.h>
 #import "JMDefine.h"
-#import "UIView+Beautify.h"
 @implementation UINavigationBar (BackgroundColor)
 
 - (UIView *)overlay
@@ -94,7 +93,14 @@
     [self tjm_setBackgroundColor:color];
     if (isShadow) {
         CGFloat value = 102 / 255.0;
-        [self addShadowWithOffset:CGSizeMake(0, 2) radius:3 color:[UIColor colorWithRed:value green:value blue:value alpha:1] opacity:0.2];
+        
+        self.layer.shadowColor = [UIColor colorWithRed:value green:value blue:value alpha:1].CGColor;
+        self.layer.shadowOffset = CGSizeMake(0, 2);
+        self.layer.shadowRadius = 3;
+        self.layer.shadowOpacity = 0.2;
+        
+        // Default clipsToBounds is YES, will clip off the shadow, so we disable it.
+        self.clipsToBounds = NO;
     }
 }
 
